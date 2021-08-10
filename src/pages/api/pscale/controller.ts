@@ -1,13 +1,14 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+// import { NextApiRequest, NextApiResponse } from 'next';
 import { PSDB } from 'planetscale-node';
 
 const conn = new PSDB('main');
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const {
-    body: { brand, model },
-    method,
-  } = req;
+// export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default async () => {
+  // const {
+  //   body: { brand, model },
+  //   method,
+  // } = req;
   console.log(conn);
   const [rows, fields] = await conn.query('select brand, model from controller', {});
   console.log(rows, fields);
