@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 
 const Admin = () => {
   const {
-    register, handleSubmit, formState: { errors },
+    register, handleSubmit,
   } = useForm();
 
   const onSubmit = (values: Record<string, string>) => {
