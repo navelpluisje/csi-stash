@@ -9,7 +9,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     method,
   } = req;
   console.log(conn);
-  const [rows, fields] = await conn.query('select brand, model from controller');
+  const [rows, fields] = await conn.query('select brand, model from controller', {});
   console.log(rows, fields);
   // switch (method) {
   //   case 'POST':
