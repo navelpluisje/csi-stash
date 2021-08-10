@@ -22,11 +22,14 @@ a {
 }
 
 .site-header {
-  align-items: center;
   border-bottom: 1px solid $color-quinary;
-  display: flex;
   padding: .5rem 1rem;
-  width: 100%;
+  
+  a {
+    align-items: center;
+    display: flex;
+    width: fit-content;
+  }
 
   img {
     height: 5rem;
