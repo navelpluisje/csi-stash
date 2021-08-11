@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 
 const Admin = () => {
-  const [controllers, setControllers] = useState([]);
+  const [controllers, setControllers] = useState<Array<any>>([]);
 
   useEffect(() => {
     fetch('/api/pscale/controller')
