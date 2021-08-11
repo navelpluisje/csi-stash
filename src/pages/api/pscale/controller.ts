@@ -13,7 +13,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   switch (method) {
     case 'POST':
-      const [rows, _] = await conn.query(
+      await conn.query(
         `insert into controller (brand, model) values ('${brand}', '${model}')`,
         {},
       );
@@ -22,12 +22,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       break;
     case 'GET':
       try {
-        const [getRows, _] = await conn.query('select * from controller', {});
+        const [getRows] = await conn.query('select * from controller', {});
         res.statusCode = 200;
         res.json(getRows);
       } catch (e) {
         const error = new Error('An error occurred while connecting to the database');
+        // @ts-ignore
         error.status = 500;
+        // @ts-ignore
         error.info = { message: 'An error occurred while connecting to the database' };
         throw error;
       }
