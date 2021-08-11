@@ -6,22 +6,28 @@ import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 
 const Admin = () => {
   const [controllers, setControllers] = useState<Array<any>>([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     fetch('/api/pscale/controller')
       .then((res) => res.json())
-      .then((result) => setControllers(result));
+      .then((result) => {
+        setLoading(false);
+        setControllers(result);
+      });
   }, []);
 
   return (
     <Page>
       <Head>
-        <title>CSI-Stash :: Admin</title>
+        <title>CSI-Stash :: Controllers</title>
       </Head>
 
       <h4>Controllers</h4>
-      <p>list of controllers</p>
+      <p>Select your controller</p>
       <section className="card-container">
+        {loading && <div>Loading.......</div> }
         {controllers.length > 0 && controllers.map((controller) => (
           <Card
             title={controller.brand}

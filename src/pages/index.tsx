@@ -16,6 +16,13 @@ export default function Home() {
       <h1 className={styles.title}>
         Welcome to SCI-Stash
       </h1>
+      <ul>
+        <ol>Select your controller</ol>
+        <ol>Select the configuration of choice</ol>
+        <ol>Select teh effects and instruments to include</ol>
+        <ol>Download the package</ol>
+        <ol>Install the</ol>
+      </ul>
       <Link href="/controllers">
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a>Go to the controllers</a>

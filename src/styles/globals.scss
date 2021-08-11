@@ -21,6 +21,10 @@ a {
   text-decoration: none;
 }
 
+ol::marker {
+  color: red
+}
+
 * {
   box-sizing: border-box;
 }
