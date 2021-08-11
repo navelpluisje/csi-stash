@@ -1,11 +1,12 @@
 import React from 'react';
 import Head from 'next/head';
-import { useUser } from '@auth0/nextjs-auth0';
+import Link from 'next/link';
+// import { useUser } from '@auth0/nextjs-auth0';
 import { Page } from '@components/page';
 import styles from '../styles/Home.module.scss';
 
 export default function Home() {
-  const { user } = useUser();
+  // const { user } = useUser();
   return (
     <Page>
       <Head>
@@ -15,7 +16,11 @@ export default function Home() {
       <h1 className={styles.title}>
         Welcome to SCI-Stash
       </h1>
-      <a href="/api/auth/login">Login</a>
+      <Link href="/controllers">
+        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+        <a>Go to the controllers</a>
+      </Link>
+      {/* <a href="/api/auth/login">Login</a>
       <br />
       <a href="/api/auth/logout">Logout</a>
       <div>
@@ -27,7 +32,7 @@ export default function Home() {
             <p>{user.email}</p>
           </div>
         )}
-      </div>
+      </div> */}
     </Page>
   );
 }
