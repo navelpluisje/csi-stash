@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Page } from '@components/page';
+import { Card } from '@components/card';
 import Head from 'next/head';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 
@@ -20,27 +21,18 @@ const Admin = () => {
 
       <h4>Controllers</h4>
       <p>list of controllers</p>
-      <table>
-        <thead>
-          <th>Id</th>
-          <th>Brand</th>
-          <th>Model</th>
-          <th>Created</th>
-          <th>Modified</th>
-          <th>Actions</th>
-        </thead>
+      <section className="card-container">
         {controllers.length > 0 && controllers.map((controller) => (
-          <tbody>
-            <td>{controller.id}</td>
-            <td>{controller.brand}</td>
-            <td>{controller.model}</td>
-            <td>{controller.created}</td>
-            <td>{controller.modified}</td>
-            <td>Actions</td>
-          </tbody>
+          <Card
+            title={controller.brand}
+            subtitle={controller.model}
+            image={{
+              src: `/images/controllers/${controller.brand.toLowerCase()}-${controller.model.toLowerCase()}.png`,
+              alt: 'The controller',
+            }}
+          />
         ))}
-      </table>
-      <a href="/admin/controllers/create" className="button">Add new controller</a>
+      </section>
     </Page>
   );
 };

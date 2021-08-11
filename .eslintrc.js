@@ -30,10 +30,11 @@ module.exports = {
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
     'import/prefer-default-export': 'off',
-    'react/prop-types': [2, { ignore: ['children'] }],
+    'react/prop-types': 'off',
     'react/jsx-props-no-spreading': [2, {
       exceptions: ['input'],
     }],
+    '@next/next/no-img-element': 'off',
   },
   settings: {
     'import/resolver': {
