@@ -21,6 +21,7 @@ export default function Home() {
       <div>
         { user && (
           <div>
+            {console.log(user)}
             <img src={user.picture || ''} alt={user.nickname || ''} />
             <h2>{user.nickname}</h2>
             <p>{user.email}</p>

@@ -10,8 +10,16 @@ const Admin = () => {
     register, handleSubmit,
   } = useForm();
 
-  const onSubmit = (values: Record<string, string>) => {
-    console.log({ values });
+  const onSubmit = async (values: Record<string, string>) => {
+    console.log(values);
+    const result = await fetch(
+      '/api/pscale/controller', {
+        method: 'POST',
+        body: JSON.stringify(values),
+      },
+
+    );
+    console.log(result);
   };
 
   return (
