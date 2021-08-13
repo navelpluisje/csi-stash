@@ -4,12 +4,17 @@ import Head from 'next/head';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 
 const Admin = () => {
+  const [loading, setLoading] = useState(false);
   const [controllers, setControllers] = useState<Array<any>>([]);
 
   useEffect(() => {
-    fetch('/api/pscale/controller')
+    setLoading(true);
+    fetch('/api/admin/controller')
       .then((res) => res.json())
-      .then((result) => setControllers(result));
+      .then((result) => {
+        setControllers(result);
+        setLoading(false);
+      });
   }, []);
 
   return (
@@ -19,26 +24,32 @@ const Admin = () => {
       </Head>
 
       <h4>Controllers</h4>
-      <p>list of controllers</p>
       <table>
         <thead>
-          <th>Id</th>
-          <th>Brand</th>
-          <th>Model</th>
-          <th>Created</th>
-          <th>Modified</th>
-          <th>Actions</th>
+          <tr>
+            <th>Id</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Created</th>
+            <th>Modified</th>
+            <th>Actions</th>
+          </tr>
         </thead>
-        {controllers.length > 0 && controllers.map((controller) => (
-          <tbody>
-            <td>{controller.id}</td>
-            <td>{controller.brand}</td>
-            <td>{controller.model}</td>
-            <td>{controller.created}</td>
-            <td>{controller.modified}</td>
-            <td>Actions</td>
-          </tbody>
-        ))}
+        <tbody>
+          {loading && <tr><td colSpan={6}>Loading&hellip;</td></tr>}
+          {controllers.length > 0 && controllers.map((controller) => (
+            <tr key={controller.id}>
+              <td>{controller.id}</td>
+              <td>{controller.brand}</td>
+              <td>{controller.model}</td>
+              <td>{controller.created}</td>
+              <td>{controller.modified}</td>
+              <td>
+                <a href={`/admin/controllers/${controller.id}`}>Edit</a>
+              </td>
+            </tr>
+          ))}
+        </tbody>
       </table>
       <a href="/admin/controllers/create" className="button">Add new controller</a>
     </Page>

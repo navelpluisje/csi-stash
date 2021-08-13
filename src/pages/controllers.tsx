@@ -10,7 +10,7 @@ const Admin = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch('/api/pscale/controller')
+    fetch('/api/admin/controller')
       .then((res) => res.json())
       .then((result) => {
         setLoading(false);

@@ -25,7 +25,7 @@ const Admin = () => {
   return (
     <Page>
       <Head>
-        <title>CSI-Stash :: Admin</title>
+        <title>CSI-Stash :: Create Controller</title>
       </Head>
 
       <h4>Create new controller</h4>

@@ -10,6 +10,7 @@ export const Page: React.FC<Props> = ({ children }) => (
         <img src="/images/logo.png" alt="" />
         <h4>-stash</h4>
       </a>
+      <a href="/api/auth/logout">Log out</a>
     </header>
     <main className="site-content">
       {children}
