@@ -1,0 +1,83 @@
+<mxfile host="65bd71144e">
+    <diagram id="LQsr0DltlxCLTuu5kR31" name="Page-1">
+        <mxGraphModel dx="1126" dy="733" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#F1FAEE" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="ePHCFl5jVuqJ5u8VZiso-15" value="Vertical Container" style="swimlane;rounded=1;fillColor=#A8DADC;strokeColor=#457B9D;fontColor=#1D3557;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="90" width="250" height="620" as="geometry">
+                        <mxRectangle x="40" y="10" width="130" height="23" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="ePHCFl5jVuqJ5u8VZiso-1" value="Select your Controller" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#A8DADC;strokeColor=#457B9D;fontColor=#1D3557;" parent="ePHCFl5jVuqJ5u8VZiso-15" vertex="1">
+                    <mxGeometry x="30" y="50" width="190" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="ePHCFl5jVuqJ5u8VZiso-7" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=#F1FAEE;strokeColor=#457B9D;fontColor=#1D3557;" parent="ePHCFl5jVuqJ5u8VZiso-15" source="ePHCFl5jVuqJ5u8VZiso-1" target="ePHCFl5jVuqJ5u8VZiso-3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ePHCFl5jVuqJ5u8VZiso-3" value="Select your Cofiguration" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#A8DADC;strokeColor=#457B9D;fontColor=#1D3557;" parent="ePHCFl5jVuqJ5u8VZiso-15" vertex="1">
+                    <mxGeometry x="30" y="170" width="190" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="ePHCFl5jVuqJ5u8VZiso-8" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=#F1FAEE;strokeColor=#457B9D;fontColor=#1D3557;" parent="ePHCFl5jVuqJ5u8VZiso-15" source="ePHCFl5jVuqJ5u8VZiso-3" target="ePHCFl5jVuqJ5u8VZiso-4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ePHCFl5jVuqJ5u8VZiso-4" value="Select your Effects and Instruments" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#A8DADC;strokeColor=#457B9D;fontColor=#1D3557;" parent="ePHCFl5jVuqJ5u8VZiso-15" vertex="1">
+                    <mxGeometry x="30" y="290" width="190" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="ePHCFl5jVuqJ5u8VZiso-9" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=#F1FAEE;strokeColor=#457B9D;fontColor=#1D3557;" parent="ePHCFl5jVuqJ5u8VZiso-15" source="ePHCFl5jVuqJ5u8VZiso-4" target="ePHCFl5jVuqJ5u8VZiso-5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ePHCFl5jVuqJ5u8VZiso-5" value="Download your configuration" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#A8DADC;strokeColor=#457B9D;fontColor=#1D3557;" parent="ePHCFl5jVuqJ5u8VZiso-15" vertex="1">
+                    <mxGeometry x="30" y="410" width="190" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="ePHCFl5jVuqJ5u8VZiso-14" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=#F1FAEE;strokeColor=#457B9D;fontColor=#1D3557;" parent="ePHCFl5jVuqJ5u8VZiso-15" source="ePHCFl5jVuqJ5u8VZiso-5" target="ePHCFl5jVuqJ5u8VZiso-10" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ePHCFl5jVuqJ5u8VZiso-10" value="&lt;font style=&quot;font-size: 64px&quot;&gt;😃&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontColor=#1D3557;" parent="ePHCFl5jVuqJ5u8VZiso-15" vertex="1">
+                    <mxGeometry x="85" y="515" width="80" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="ePHCFl5jVuqJ5u8VZiso-26" value="&lt;font style=&quot;font-size: 36px&quot;&gt;1️⃣&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;rounded=1;fontColor=#1D3557;" parent="ePHCFl5jVuqJ5u8VZiso-15" vertex="1">
+                    <mxGeometry x="10" y="40" width="50" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="ePHCFl5jVuqJ5u8VZiso-27" value="&lt;font style=&quot;font-size: 36px&quot;&gt;2️⃣&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;rounded=1;fontColor=#1D3557;" parent="ePHCFl5jVuqJ5u8VZiso-15" vertex="1">
+                    <mxGeometry x="10" y="160" width="50" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="ePHCFl5jVuqJ5u8VZiso-28" value="&lt;font style=&quot;font-size: 36px&quot;&gt;3️⃣&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;rounded=1;fontColor=#1D3557;" parent="ePHCFl5jVuqJ5u8VZiso-15" vertex="1">
+                    <mxGeometry x="10" y="280" width="50" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="ePHCFl5jVuqJ5u8VZiso-29" value="&lt;font style=&quot;font-size: 36px&quot;&gt;4️⃣&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;rounded=1;fontColor=#1D3557;" parent="ePHCFl5jVuqJ5u8VZiso-15" vertex="1">
+                    <mxGeometry x="10" y="400" width="50" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="ePHCFl5jVuqJ5u8VZiso-16" value="&lt;div align=&quot;left&quot;&gt;&lt;font style=&quot;font-size: 14px&quot;&gt;Pretty straight forward. Select a controller from the list&lt;/font&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#A8DADC;strokeColor=#457B9D;align=left;rounded=1;fontColor=#1D3557;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="110" width="360" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="ePHCFl5jVuqJ5u8VZiso-17" value="&lt;div style=&quot;font-size: 14px&quot; align=&quot;left&quot;&gt;&lt;font style=&quot;font-size: 14px&quot;&gt;A single controller should have the abbility to have more then 1 configuration. Configurations can differ in button handling, euCon or regular fx, sends or receives handling. We should tka a look at how to deal with the effects in these cases. &lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px&quot; align=&quot;left&quot;&gt;&lt;font style=&quot;font-size: 14px&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px&quot; align=&quot;left&quot;&gt;&lt;font style=&quot;font-size: 14px&quot;&gt;As far as I'm aware, the only difference is the navigator. We could make a flag for the configuration to define the kind of fx handling. According to that we should be able to set the correct navigator.&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px&quot; align=&quot;left&quot;&gt;&lt;font style=&quot;font-size: 14px&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px&quot; align=&quot;left&quot;&gt;&lt;font style=&quot;font-size: 14px&quot;&gt;This way we can use effect zone files for multiple connfigs and will increase the number of effects.&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px&quot; align=&quot;left&quot;&gt;&lt;font style=&quot;font-size: 14px&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px&quot; align=&quot;left&quot;&gt;&lt;font style=&quot;font-size: 14px&quot;&gt;Selecvting the configguration will instantly attach the zone files for the controller like navigation, channel etc.&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px&quot;&gt;&lt;font style=&quot;font-size: 14px&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;align=left;fillColor=#A8DADC;strokeColor=#457B9D;labelPadding=24;rounded=1;fontColor=#1D3557;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="210" width="430" height="300" as="geometry"/>
+                </mxCell>
+                <mxCell id="ePHCFl5jVuqJ5u8VZiso-20" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;labelBackgroundColor=#F1FAEE;strokeColor=#457B9D;fontColor=#1D3557;" parent="1" source="ePHCFl5jVuqJ5u8VZiso-1" target="ePHCFl5jVuqJ5u8VZiso-16" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ePHCFl5jVuqJ5u8VZiso-21" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;labelBackgroundColor=#F1FAEE;strokeColor=#457B9D;fontColor=#1D3557;" parent="1" source="ePHCFl5jVuqJ5u8VZiso-3" target="ePHCFl5jVuqJ5u8VZiso-17" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ePHCFl5jVuqJ5u8VZiso-22" value="&lt;div style=&quot;font-size: 14px&quot; align=&quot;left&quot;&gt;&lt;font style=&quot;font-size: 14px&quot;&gt;There should be a list with effects and instrument zone files for each controller. Users should be able to add them to a kind of shopping cart.&lt;/font&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#A8DADC;strokeColor=#457B9D;align=left;rounded=1;fontColor=#1D3557;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="540" width="430" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="ePHCFl5jVuqJ5u8VZiso-23" value="&lt;div style=&quot;font-size: 14px&quot; align=&quot;left&quot;&gt;Generate a zip with all the files in the correct folder structure and let the user download this file. User should now be able to install the files.&lt;/div&gt;&lt;div style=&quot;font-size: 14px&quot; align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px&quot; align=&quot;left&quot;&gt;We should after downloading display a page with instructions on how to install those files on the different operating systems.&lt;br&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#A8DADC;strokeColor=#457B9D;align=left;rounded=1;fontColor=#1D3557;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="680" width="430" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="ePHCFl5jVuqJ5u8VZiso-24" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;labelBackgroundColor=#F1FAEE;strokeColor=#457B9D;fontColor=#1D3557;" parent="1" source="ePHCFl5jVuqJ5u8VZiso-4" target="ePHCFl5jVuqJ5u8VZiso-22" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="340" y="410"/>
+                            <mxPoint x="340" y="595"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="ePHCFl5jVuqJ5u8VZiso-25" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;labelBackgroundColor=#F1FAEE;strokeColor=#457B9D;fontColor=#1D3557;" parent="1" source="ePHCFl5jVuqJ5u8VZiso-5" target="ePHCFl5jVuqJ5u8VZiso-23" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
