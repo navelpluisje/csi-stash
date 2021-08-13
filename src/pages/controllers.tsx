@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Page } from '@components/page';
 import { Card } from '@components/card';
 import Head from 'next/head';
-import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 
-const Admin = () => {
+const ControllerPage = () => {
   const [controllers, setControllers] = useState<Array<any>>([]);
   const [loading, setLoading] = useState(false);
 
@@ -43,4 +42,4 @@ const Admin = () => {
   );
 };
 
-export default withPageAuthRequired(Admin);
+export default ControllerPage;
