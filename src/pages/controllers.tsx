@@ -9,7 +9,7 @@ const ControllerPage = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch('/api/admin/controller')
+    fetch('/api/controller')
       .then((res) => res.json())
       .then((result) => {
         setLoading(false);

@@ -1,4 +1,4 @@
-Home:  
+## Home:  
 
 * https://wireframe.cc/lvAwRh
 
@@ -7,7 +7,15 @@ Home:
 * The text part welcomes and gives an explanation
 * Tha image can be used for a descriptive image
 
-Configuration:
+## Configuration:
+
+### Overview
+
+The overall virew could look like:
+
+![Overview](./create-csi-zip.png)
+
+### The steps
 
 1. Step 1: Controllers
     * https://wireframe.cc/sDl74z
