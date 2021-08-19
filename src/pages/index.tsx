@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
-import Link from 'next/link';
 import { Page } from '@components/page';
+import { Link } from '@components/atoms/link';
 import styles from '../styles/Home.module.scss';
 
 export default function Home() {
@@ -21,13 +21,8 @@ export default function Home() {
         <ol>Download the package</ol>
         <ol>Install the</ol>
       </ul>
-      <Link href="/controllers">
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <a>Go to the controllers</a>
-      </Link>
-      {/* <a href="/api/auth/login">Login</a>
-      <br />
-      <a href="/api/auth/logout">Logout</a>
+      <Link href="/controllers">Go to the controllers</Link>
+      {/*
       <div>
         { profile && console.log({ profile })}
         { user && (

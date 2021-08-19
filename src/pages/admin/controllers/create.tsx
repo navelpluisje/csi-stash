@@ -1,11 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
-import { Page } from '@components/page';
+import { Page } from '@components/adminPage';
 import Head from 'next/head';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { useForm } from 'react-hook-form';
 import { Card } from '@components/card';
+import { Link } from '@components/atoms/link';
 
 const Admin = () => {
   const {
@@ -87,7 +88,7 @@ const Admin = () => {
           for the newly added controller
         </p>
       </section>
-      <p><a href="/admin/controllers">Controllers</a></p>
+      <p><Link href="/admin/controllers">Controllers</Link></p>
 
     </Page>
   );

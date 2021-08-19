@@ -1,6 +1,8 @@
 @import './Color.scss';
 @import './Normalise.scss';
 @import '../../node_modules/milligram/src/milligram.sass';
+@import './Button.scss';
+@import './Link.scss';
 
 h1,
 h2,
@@ -14,11 +16,6 @@ h6 {
 
 body {
   background-color: #f0efef;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
 }
 
 input[type="color"], 

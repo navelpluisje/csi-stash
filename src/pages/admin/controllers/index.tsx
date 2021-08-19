@@ -1,29 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { Page } from '@components/page';
+import React from 'react';
+import { Page } from '@components/adminPage';
 import Head from 'next/head';
-import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0';
+import { withPageAuthRequired } from '@auth0/nextjs-auth0';
+import { Link } from '@components/atoms/link';
+import { useGetAllControllersQuery, usePrefetch } from '@store/controller.admin.service';
 
 const Admin = () => {
-  const [loading, setLoading] = useState(false);
-  const [controllers, setControllers] = useState<Array<any>>([]);
-  const x = useUser();
+  const { data = [], isLoading } = useGetAllControllersQuery();
+  const prefetchController = usePrefetch('getControllerById');
 
-  useEffect(() => {
-    setLoading(true);
-    fetch('/api/admin/controller')
-      .then((res) => res.json())
-      .then((result) => {
-        setControllers(result);
-        setLoading(false);
-      });
-  }, []);
+  const prefetch = (id: number) => {
+    prefetchController(id);
+  };
 
   return (
     <Page>
       <Head>
         <title>CSI-Stash :: Admin</title>
       </Head>
-      {console.log(x)}
       <h4>Controllers</h4>
       <table>
         <thead>
@@ -38,8 +32,8 @@ const Admin = () => {
           </tr>
         </thead>
         <tbody>
-          {loading && <tr><td colSpan={7}>Loading&hellip;</td></tr>}
-          {controllers.length > 0 && controllers.map((controller) => (
+          {isLoading && <tr><td colSpan={7}>Loading&hellip;</td></tr>}
+          {data.length > 0 && data.map((controller) => (
             <tr key={controller.id}>
               <td>{controller.id}</td>
               <td>{controller.brand}</td>
@@ -48,13 +42,19 @@ const Admin = () => {
               <td>{controller.created}</td>
               <td>{controller.modified}</td>
               <td>
-                <a href={`/admin/controllers/${controller.id}`}>Edit</a>
+                <Link
+                  href={`/admin/controllers/${controller.id}`}
+                  onMouseOver={() => prefetch(controller.id)}
+                  onFocus={() => prefetch(controller.id)}
+                >
+                  Edit
+                </Link>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <a href="/admin/controllers/create" className="button">Add new controller</a>
+      <Link href="/admin/controllers/create" button>Add new controller</Link>
     </Page>
   );
 };

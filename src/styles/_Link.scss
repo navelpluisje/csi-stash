@@ -1,0 +1,10 @@
+a {
+  color: $color-primary;
+  text-decoration: underline;
+  transition: all .3s ease;
+
+  &:focus,
+  &:hover {
+    color: darken($color-primary, 15%);
+  }
+}

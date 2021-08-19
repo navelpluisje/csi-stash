@@ -2,8 +2,8 @@ import React from 'react';
 import { Page } from '@components/page';
 import { Card } from '@components/card';
 import Head from 'next/head';
-import Link from 'next/link';
 import { useGetAllControllersQuery, usePrefetch } from '@store/controller.service';
+import { Link } from '@components/atoms/link';
 
 const ControllerPage = () => {
   const { data = [], isLoading } = useGetAllControllersQuery();
@@ -32,16 +32,15 @@ const ControllerPage = () => {
             }}
           >
             <footer>
-              <Link href={`/controllers/${controller.id}`} passHref>
-                <a
-                  className="button button-outline"
-                  href="dummy"
-                  onFocus={() => prefetch(controller.id)}
-                  onMouseOver={() => prefetch(controller.id)}
-                >
-                  Select
-
-                </a>
+              <Link
+                href={`/controllers/${controller.id}`}
+                onFocus={() => prefetch(controller.id)}
+                onMouseOver={() => prefetch(controller.id)}
+                button
+                outline
+                wide
+              >
+                Select
               </Link>
             </footer>
           </Card>

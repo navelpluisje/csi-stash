@@ -1,6 +1,7 @@
 import React from 'react';
-import { Page } from '@components/page';
+import { Page } from '@components/adminPage';
 import Head from 'next/head';
+import { Link } from '@components/atoms/link';
 
 const StylePage = () => (
   <Page>
@@ -31,7 +32,7 @@ const StylePage = () => (
     <blockquote>This is a blockquote</blockquote>
     <hr />
     <h4>Buttons</h4>
-    <a className="button" href="#test">Default Button</a>
+    <Link href="#test" button>Default Button</Link>
     <button type="button" className="button button-outline">Outlined Button</button>
     <input className="button button-clear" type="submit" value="Clear Button" />
     <hr />
