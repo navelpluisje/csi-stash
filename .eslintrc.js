@@ -43,6 +43,7 @@ module.exports = {
           ['@components', './src/components'],
           ['@queries', './src/queries'],
           ['@utils', './src/utils'],
+          ['@store', './src/store'],
         ],
       },
     },

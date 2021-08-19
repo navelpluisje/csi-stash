@@ -17,7 +17,8 @@
     "paths": {
       "@components/*": ["src/components/*"],
       "@queries/*": ["src/queries/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@store/*": ["src/store/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
