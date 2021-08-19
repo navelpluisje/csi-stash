@@ -41,6 +41,8 @@ module.exports = {
       alias: {
         map: [
           ['@components', './src/components'],
+          ['@queries', './src/queries'],
+          ['@utils', './src/utils'],
         ],
       },
     },

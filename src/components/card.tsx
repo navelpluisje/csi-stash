@@ -30,6 +30,6 @@ export const Card: React.FC<Props> = ({
         />
       </picture>
     )}
-    {children}
+    {children && <section className="content">{children}</section>}
   </article>
 );

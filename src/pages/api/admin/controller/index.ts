@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { withApiAuthRequired } from '@auth0/nextjs-auth0';
 import { PSDB } from 'planetscale-node';
+import { getAdminControllers, insertController } from '@queries/controllers';
 
 const conn = new PSDB('main');
 
@@ -14,15 +15,19 @@ const Controllers = async (req: NextApiRequest, res: NextApiResponse) => {
   switch (method) {
     case 'POST':
       await conn.query(
-        `insert into controller (brand, model) values ('${brand}', '${model}')`,
+        insertController({
+          brand,
+          model,
+          author_id: 1,
+        }),
         {},
       );
       res.statusCode = 201;
-      res.json({ brand: req.body.brand, model: req.body.model });
+      res.json({ brand, model, author_id: 1 });
       break;
     case 'GET':
       try {
-        const [getRows] = await conn.query('select * from controller', {});
+        const [getRows] = await conn.query(getAdminControllers(), {});
         res.statusCode = 200;
         res.json(getRows);
       } catch (e) {

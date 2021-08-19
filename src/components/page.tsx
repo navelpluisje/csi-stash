@@ -1,9 +1,11 @@
 import React from 'react';
 import Image from 'next/image';
 
-interface Props {}
+interface Props {
+  twoColumn?: boolean;
+}
 
-export const Page: React.FC<Props> = ({ children }) => (
+export const Page: React.FC<Props> = ({ children, twoColumn }) => (
   <>
     <header className="site-header">
       <a href="/">
@@ -12,7 +14,7 @@ export const Page: React.FC<Props> = ({ children }) => (
       </a>
       <a href="/api/auth/logout">Log out</a>
     </header>
-    <main className="site-content">
+    <main className={`site-content${twoColumn ? ' two-column' : ''}`}>
       {children}
     </main>
     <footer className="site-footer">

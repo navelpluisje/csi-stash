@@ -1,12 +1,11 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-// import { useUser } from '@auth0/nextjs-auth0';
+import { useUser } from '@auth0/nextjs-auth0';
 import { Page } from '@components/page';
 import styles from '../styles/Home.module.scss';
 
 export default function Home() {
-  // const { user } = useUser();
   return (
     <Page>
       <Head>
@@ -31,6 +30,7 @@ export default function Home() {
       <br />
       <a href="/api/auth/logout">Logout</a>
       <div>
+        { profile && console.log({ profile })}
         { user && (
           <div>
             {console.log(user)}

@@ -5,22 +5,48 @@ import Head from 'next/head';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
+import { Card } from '@components/card';
 
 const Admin = () => {
   const [loading, setLoading] = useState(false);
+  const [hasData, sethasData] = useState(false);
   const { query, push } = useRouter();
-  const [controller, setController] = useState<Record<string, any>>();
-  const { register, handleSubmit } = useForm();
+  const {
+    register, handleSubmit, setValue, watch,
+  } = useForm();
+
+  const filename = watch('filename');
+  const file = watch('file');
 
   useEffect(() => {
     setLoading(true);
     fetch(`/api/admin/controller/${query.id}`)
       .then((res) => res.json())
       .then((result) => {
-        setController(result);
+        setValue('brand', result[0].brand);
+        setValue('model', result[0].model);
+        setValue('file', result[0].file);
+        setValue('filename', result[0].filename);
         setLoading(false);
+        sethasData(true);
       });
   }, [query]);
+
+  function readFileContent(file) {
+    const reader = new FileReader();
+    return new Promise((resolve, reject) => {
+      reader.onload = (event) => resolve(event.target.result);
+      reader.onerror = (error) => reject(error);
+      reader.readAsText(file);
+    });
+  }
+
+  const handleUpload = async (event) => {
+    const file = event.target.files[0];
+    const fileContent = await readFileContent(file);
+    setValue('file', fileContent);
+    setValue('filename', file.name);
+  };
 
   const onSubmit = async (values: Record<string, string>) => {
     await fetch(
@@ -34,27 +60,60 @@ const Admin = () => {
   };
 
   return (
-    <Page>
+    <Page twoColumn>
       <Head>
         <title>CSI-Stash :: Edit Controller</title>
       </Head>
 
-      <h4>Edit controller</h4>
-      {loading && <div>loading&hellip;</div>}
-      {controller && (
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <input {...register('id')} type="hidden" defaultValue={controller[0].id} />
-          <div>
-            <label htmlFor="brand">Brand</label>
-            <input {...register('brand')} id="brand" defaultValue={controller[0].brand} />
-          </div>
-          <div>
-            <label htmlFor="model">Model</label>
-            <input {...register('model')} id="model" defaultValue={controller[0].model} />
-          </div>
-          <button type="submit">Save</button>
-        </form>
-      )}
+      <section>
+        <Card title="View/Edit Controller">
+          {loading && <div>loading&hellip;</div>}
+          {hasData && (
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <input {...register('id')} type="hidden" />
+              <div>
+                <label htmlFor="brand">Brand</label>
+                <input {...register('brand')} id="brand" />
+              </div>
+              <div>
+                <label htmlFor="model">Model</label>
+                <input {...register('model')} id="model" />
+              </div>
+              <div>
+                <label htmlFor="file">Mst file</label>
+                <label className="button button-outline upload-button">
+                  <input id="upload" type="file" onChange={handleUpload} />
+                  Select MST-file
+                </label>
+                {filename}
+                <pre><code>{file }</code></pre>
+              </div>
+              <button type="submit">Save</button>
+            </form>
+          )}
+        </Card>
+        <Card title="Configurations">
+          <button type="submit">Add Configurations</button>
+        </Card>
+      </section>
+      <section>
+        <h4>A little Help</h4>
+        <h5>Edit the controller</h5>
+        <p>
+          Just change the brand and/or model of the controller and press the
+          &lsquo;Save&rsquo;-button.
+        </p>
+        <h5>Configurations</h5>
+        <p>
+          What is a controller without any CSI configurations. All configurations need to be
+          working with the *.mst file of the controller. This way we can make configurations
+          easier to maintain and interchangable.
+        </p>
+        <p>
+          Press the &lsquo;Add configuration&rsquo;-button to create a new configuration,
+          or edit an existing one.
+        </p>
+      </section>
       <p><a href="/admin/controllers">Controllers</a></p>
     </Page>
   );

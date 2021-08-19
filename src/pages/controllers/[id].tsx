@@ -2,20 +2,24 @@ import React, { useEffect, useState } from 'react';
 import { Page } from '@components/page';
 import { Card } from '@components/card';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 const ControllerPage = () => {
-  const [controllers, setControllers] = useState<Array<any>>([]);
+  const { query } = useRouter();
+  const [controller, setController] = useState();
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
-    fetch('/api/controller')
-      .then((res) => res.json())
-      .then((result) => {
-        setLoading(false);
-        setControllers(result);
-      });
-  }, []);
+    if (typeof query.id !== 'undefined') {
+      setLoading(true);
+      fetch(`/api/controller/${query.id}`)
+        .then((res) => res.json())
+        .then((result) => {
+          setLoading(false);
+          setController(result[0]);
+        });
+    }
+  }, [query]);
 
   return (
     <Page>
@@ -23,11 +27,11 @@ const ControllerPage = () => {
         <title>CSI-Stash :: Controllers</title>
       </Head>
 
-      <h4>Controllers</h4>
-      <p>Select your controller</p>
+      <h2>Controller</h2>
+      <p>Select your configuration</p>
+      {loading && <div>Loading.......</div> }
       <section className="card-container">
-        {loading && <div>Loading.......</div> }
-        {controllers.length > 0 && controllers.map((controller) => (
+        {controller && (
           <Card
             title={controller.brand}
             subtitle={controller.model}
@@ -36,8 +40,9 @@ const ControllerPage = () => {
               alt: 'The controller',
             }}
           />
-        ))}
+        )}
       </section>
+      <h3>Configurations</h3>
     </Page>
   );
 };

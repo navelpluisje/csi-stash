@@ -81,6 +81,13 @@ ol::marker {
 
 .site-content {
   padding: 2rem;
+
+  &.two-column {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr 1fr;
+    align-content: start;
+  }
 }
 
 #__next {
@@ -98,13 +105,18 @@ ol::marker {
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
   margin-bottom: 2rem;
+
+  > .card {
+    margin-bottom: 0;
+  }
 }
 
 .card {
   background-color: white;
   display: grid;
   grid-template-rows: auto auto auto;
-  grid-template-areas: "picture" "title" "rest";
+  grid-template-areas: "picture" "title" "content";
+  margin-bottom: 2rem;
 
   picture {
     align-items: center;
@@ -132,9 +144,37 @@ ol::marker {
   h4 {
     color: $color-primary;
   }
+
+  .content {
+    grid-area: content;
+    padding: 1rem;
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+  }
   
   header {
-    grid-area: title;
+    grid-area: title; 
     padding: 1rem;
   }
+}
+
+textarea {
+  overflow: scroll;
+}
+
+.upload-button {
+  margin-right: 1rem;
+
+  input {
+    clip: rect(0, 0, 0, 0);
+    position: absolute;
+    width: 0;
+  }
+}
+
+pre {
+  overflow: scroll;
+  max-height: 40rem;
 }
