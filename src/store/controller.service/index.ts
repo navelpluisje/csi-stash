@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-interface Controller {
+export interface Controller {
   id: number;
   brand: string;
   model: string;
@@ -26,4 +26,6 @@ export const controllerApi = createApi({
 export const {
   useGetAllControllersQuery,
   useGetControllerByIdQuery,
+  useLazyGetControllerByIdQuery,
+  usePrefetch,
 } = controllerApi;

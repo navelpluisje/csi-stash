@@ -32,20 +32,28 @@ const Admin = () => {
       });
   }, [query]);
 
-  function readFileContent(file) {
+  function readFileContent(fileContent: File) {
     const reader = new FileReader();
     return new Promise((resolve, reject) => {
-      reader.onload = (event) => resolve(event.target.result);
+      reader.onload = (event) => {
+        const { target } = event;
+        if (target) {
+          resolve(target.result);
+        }
+      };
       reader.onerror = (error) => reject(error);
-      reader.readAsText(file);
+      reader.readAsText(fileContent);
     });
   }
 
-  const handleUpload = async (event) => {
-    const file = event.target.files[0];
-    const fileContent = await readFileContent(file);
-    setValue('file', fileContent);
-    setValue('filename', file.name);
+  const handleUpload = async (event: Event) => {
+    const target = event.target as HTMLInputElement;
+    const uploadFile = target.files ? target.files[0] : null;
+    if (uploadFile) {
+      const fileContent = await readFileContent(uploadFile);
+      setValue('file', fileContent);
+      setValue('filename', file.name);
+    }
   };
 
   const onSubmit = async (values: Record<string, string>) => {
@@ -82,6 +90,7 @@ const Admin = () => {
               <div>
                 <label htmlFor="file">Mst file</label>
                 <label className="button button-outline upload-button">
+                  {/* @ts-ignore */}
                   <input id="upload" type="file" onChange={handleUpload} />
                   Select MST-file
                 </label>

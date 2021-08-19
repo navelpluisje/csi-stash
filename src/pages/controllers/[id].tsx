@@ -1,25 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Page } from '@components/page';
 import { Card } from '@components/card';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { useGetControllerByIdQuery } from '@store/controller.service';
 
 const ControllerPage = () => {
   const { query } = useRouter();
-  const [controller, setController] = useState();
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (typeof query.id !== 'undefined') {
-      setLoading(true);
-      fetch(`/api/controller/${query.id}`)
-        .then((res) => res.json())
-        .then((result) => {
-          setLoading(false);
-          setController(result[0]);
-        });
-    }
-  }, [query]);
+  const { data = [], isLoading } = useGetControllerByIdQuery(parseInt(query.id as string, 10));
 
   return (
     <Page>
@@ -29,14 +17,14 @@ const ControllerPage = () => {
 
       <h2>Controller</h2>
       <p>Select your configuration</p>
-      {loading && <div>Loading.......</div> }
+      {isLoading && <div>Loading.......</div> }
       <section className="card-container">
-        {controller && (
+        {data.length > 0 && (
           <Card
-            title={controller.brand}
-            subtitle={controller.model}
+            title={data[0].brand}
+            subtitle={data[0].model}
             image={{
-              src: `/images/controllers/${controller.brand.toLowerCase()}-${controller.model.toLowerCase()}.png`,
+              src: `/images/controllers/${data[0].brand.toLowerCase()}-${data[0].model.toLowerCase()}.png`,
               alt: 'The controller',
             }}
           />

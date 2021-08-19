@@ -1,9 +1,8 @@
 import { getControllerById } from '@queries/controllers';
 import { NextApiRequest, NextApiResponse } from 'next';
-// import { PSDB } from 'planetscale-node';
-import { fetchQuery } from 'src/utils/fetchData';
+import { PSDB } from 'planetscale-node';
 
-// const conn = new PSDB('main');
+const conn = new PSDB('main');
 
 const Controllers = async (req: NextApiRequest, res: NextApiResponse) => {
   const {
@@ -14,8 +13,7 @@ const Controllers = async (req: NextApiRequest, res: NextApiResponse) => {
   switch (method) {
     case 'GET':
       try {
-        const result = await fetchQuery(getControllerById(parseInt(query.id as string, 10)));
-        console.log({ result });
+        const [result] = await conn.query(getControllerById(parseInt(query.id as string, 10)), {});
         res.statusCode = 200;
         res.json(result);
       } catch (e) {

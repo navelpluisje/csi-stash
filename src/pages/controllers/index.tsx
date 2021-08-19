@@ -3,19 +3,21 @@ import { Page } from '@components/page';
 import { Card } from '@components/card';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useGetAllControllersQuery } from '@store/controller.service';
+import { useGetAllControllersQuery, usePrefetch } from '@store/controller.service';
 
 const ControllerPage = () => {
-  const {
-    data = [], isLoading,
-  } = useGetAllControllersQuery();
+  const { data = [], isLoading } = useGetAllControllersQuery();
+  const prefetchController = usePrefetch('getControllerById');
+
+  const prefetch = (id: number) => {
+    prefetchController(id);
+  };
 
   return (
     <Page>
       <Head>
         <title>CSI-Stash :: Controllers</title>
       </Head>
-
       <h4>Controllers</h4>
       <p>Select your controller</p>
       <section className="card-container">
@@ -31,7 +33,15 @@ const ControllerPage = () => {
           >
             <footer>
               <Link href={`/controllers/${controller.id}`} passHref>
-                <a className="button button-outline" href="dummy">Select</a>
+                <a
+                  className="button button-outline"
+                  href="dummy"
+                  onFocus={() => prefetch(controller.id)}
+                  onMouseOver={() => prefetch(controller.id)}
+                >
+                  Select
+
+                </a>
               </Link>
             </footer>
           </Card>
