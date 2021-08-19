@@ -1,16 +1,23 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface Props {}
 
 export const Page: React.FC<Props> = ({ children }) => (
   <>
     <header className="site-header">
-      <a href="/">
-        <img src="/images/logo.png" alt="" />
-        <h4>-stash</h4>
-      </a>
-      <a href="/api/auth/logout">Log out</a>
+      <Link href="/">
+        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+        <a>
+          <img src="/images/logo.png" alt="" />
+          <h4>-stash</h4>
+        </a>
+      </Link>
+      <Link href="/api/auth/logout">
+        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+        <a>Log out</a>
+      </Link>
     </header>
     <main className="site-content">
       {children}

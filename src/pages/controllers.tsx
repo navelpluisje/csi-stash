@@ -1,21 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Page } from '@components/page';
 import { Card } from '@components/card';
 import Head from 'next/head';
+import { useGetAllControllersQuery } from '@store/controller.service';
 
 const ControllerPage = () => {
-  const [controllers, setControllers] = useState<Array<any>>([]);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setLoading(true);
-    fetch('/api/controller')
-      .then((res) => res.json())
-      .then((result) => {
-        setLoading(false);
-        setControllers(result);
-      });
-  }, []);
+  const {
+    data = [], isLoading,
+  } = useGetAllControllersQuery();
 
   return (
     <Page>
@@ -26,8 +18,8 @@ const ControllerPage = () => {
       <h4>Controllers</h4>
       <p>Select your controller</p>
       <section className="card-container">
-        {loading && <div>Loading.......</div> }
-        {controllers.length > 0 && controllers.map((controller) => (
+        {isLoading && <div>Loading.......</div> }
+        {data.length > 0 && data.map((controller) => (
           <Card
             title={controller.brand}
             subtitle={controller.model}
