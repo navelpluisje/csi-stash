@@ -1,14 +1,21 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Page } from '@components/adminPage';
 import Head from 'next/head';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { useForm } from 'react-hook-form';
 import { Card } from '@components/card';
 import { Link } from '@components/atoms/link';
+import { readFileContent } from '@utils/readFileContent';
+import { useAddControllerMutation } from '@store/controller.admin.service';
+import { useRouter } from 'next/router';
 
 const Admin = () => {
+  const { push } = useRouter();
+  const [addController, {
+    isLoading, isUninitialized, isSuccess,
+  }] = useAddControllerMutation();
   const {
     register, handleSubmit, setValue, watch,
   } = useForm();
@@ -16,27 +23,14 @@ const Admin = () => {
   const file = watch('file');
 
   const onSubmit = async (values: Record<string, string>) => {
-    await fetch(
-      '/api/pscale/controller', {
-        method: 'POST',
-        body: JSON.stringify(values),
-      },
-    );
+    addController({ body: values });
   };
 
-  function readFileContent(fileContent: File) {
-    const reader = new FileReader();
-    return new Promise((resolve, reject) => {
-      reader.onload = (event) => {
-        const { target } = event;
-        if (target) {
-          resolve(target.result);
-        }
-      };
-      reader.onerror = (error) => reject(error);
-      reader.readAsText(fileContent);
-    });
-  }
+  useEffect(() => {
+    if (!isUninitialized && isSuccess) {
+      push('/admin/controllers');
+    }
+  }, [isSuccess, isUninitialized]);
 
   const handleUpload = async (event: Event) => {
     const target = event.target as HTMLInputElement;
@@ -74,7 +68,7 @@ const Admin = () => {
             {filename}
             <pre><code>{file }</code></pre>
           </div>
-          <button type="submit">Save</button>
+          <button type="submit" disabled={isLoading}>Save</button>
         </form>
       </Card>
       <section>

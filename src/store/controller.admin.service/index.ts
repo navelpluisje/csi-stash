@@ -12,7 +12,7 @@ export interface Controller {
 }
 type ControllerResponse = Array<Controller>
 interface MutationController {
-  id: number;
+  id?: number;
   body: Partial<Controller>;
 }
 
@@ -39,6 +39,17 @@ export const adminControllerApi = createApi({
       },
       invalidatesTags: ['Controller'],
     }),
+    addController: builder.mutation<Controller, MutationController>({
+      query(data) {
+        const { id, body } = data;
+        return {
+          url: `${id}`,
+          method: 'POST',
+          body: JSON.stringify(body),
+        };
+      },
+      invalidatesTags: ['Controller'],
+    }),
   }),
 });
 
@@ -49,5 +60,6 @@ export const {
   useGetControllerByIdQuery,
   useLazyGetControllerByIdQuery,
   useUpdateControllerMutation,
+  useAddControllerMutation,
   usePrefetch,
 } = adminControllerApi;

@@ -14,7 +14,7 @@ const Admin = () => {
   const { query, push } = useRouter();
   const { data = [], isLoading } = useGetControllerByIdQuery(parseInt(query.id as string, 10));
   const [updateController, {
-    isLoading: isUpdating, isUninitialized,
+    isLoading: isUpdating, isUninitialized, isSuccess,
   }] = useUpdateControllerMutation();
   const {
     register, handleSubmit, setValue, watch,
@@ -34,10 +34,10 @@ const Admin = () => {
   }, [data, setValue]);
 
   useEffect(() => {
-    if (!isUninitialized && !isUpdating) {
+    if (!isUninitialized && isSuccess) {
       push('/admin/controllers');
     }
-  }, [isUpdating, isUninitialized]);
+  }, [isSuccess, isUninitialized]);
 
   const handleUpload = async (event: Event) => {
     const target = event.target as HTMLInputElement;
