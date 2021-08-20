@@ -41,9 +41,9 @@ export const adminControllerApi = createApi({
     }),
     addController: builder.mutation<Controller, MutationController>({
       query(data) {
-        const { id, body } = data;
+        const { body } = data;
         return {
-          url: `${id}`,
+          url: '',
           method: 'POST',
           body: JSON.stringify(body),
         };
