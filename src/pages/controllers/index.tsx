@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page } from '@components/page';
+import { StepsPage } from '@components/stepsPage';
 import { Card } from '@components/card';
 import Head from 'next/head';
 import { useGetAllControllersQuery, usePrefetch } from '@store/controller.service';
@@ -14,11 +14,12 @@ const ControllerPage = () => {
   };
 
   return (
-    <Page>
+    <StepsPage>
       <Head>
         <title>CSI-Stash :: Controllers</title>
       </Head>
-      <h4>Controllers</h4>
+
+      <h2>Controller</h2>
       <p>Select your controller</p>
       <section className="card-container">
         {isLoading && <div>Loading.......</div> }
@@ -46,7 +47,7 @@ const ControllerPage = () => {
           </Card>
         ))}
       </section>
-    </Page>
+    </StepsPage>
   );
 };
 

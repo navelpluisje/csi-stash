@@ -19,9 +19,9 @@ export const Link: React.FC<LinkProps & Props> = ({
 
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
-    <NextLink {...rest}>
+    <NextLink {...rest} passHref>
+      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       <a
-        href="dummy"
         className={className}
         onFocus={onFocus}
         onMouseOver={onMouseOver}

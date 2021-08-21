@@ -1,0 +1,13 @@
+.steps-content {
+  display: grid;
+  grid-template-columns: minmax(260px, 20%) 1fr;
+
+  aside {
+    background-color: $color-primary;
+    color: #fff;
+  }
+
+  .content {
+    padding: 2rem;
+  }
+}

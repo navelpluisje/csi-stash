@@ -1,0 +1,26 @@
+.page-header {
+  background-color: #f00;
+  border-bottom: 1px solid $color-quinary;
+  display: flex;
+  height: 5rem;
+  justify-content: space-between;
+  padding: 1rem;
+  
+  a {
+    align-items: center;
+    display: flex;
+    width: fit-content;
+  }
+
+  img {
+    height: 6rem;
+    position: relative;
+    top: 1rem;
+    z-index: 1;
+  }
+
+  h4 {
+    font-style: italic;
+    margin: 0;
+  }
+}

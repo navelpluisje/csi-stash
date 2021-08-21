@@ -6,11 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint . --ext ts,tsx"
+    "lint": "eslint . --ext ts,tsx",
+    "stylelint": "stylelint . --fix"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^1.5.0",
     "@reduxjs/toolkit": "^1.6.1",
+    "framer-motion": "^4.1.17",
     "milligram": "^1.4.1",
     "next": "11.0.1",
     "planetscale-node": "^0.1.0",
@@ -32,6 +34,8 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-sass-guidelines": "^8.0.0",
     "typescript": "4.3.5"
   }
 }

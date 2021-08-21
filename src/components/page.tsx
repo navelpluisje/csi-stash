@@ -1,6 +1,6 @@
 import React from 'react';
-import Image from 'next/image';
-import { Link } from '@components/atoms/link';
+import { PageHeader } from '@components/molecules/pageheader';
+import { PageFooter } from '@components/molecules/pagefooter';
 
 interface Props {
   twoColumn?: boolean;
@@ -8,28 +8,10 @@ interface Props {
 
 export const Page: React.FC<Props> = ({ children, twoColumn }) => (
   <>
-    <header className="site-header">
-      <Link href="/">
-        <img src="/images/logo.png" alt="" />
-        <h4>-stash</h4>
-      </Link>
-      <Link href="/api/auth/logout">Log out</Link>
-    </header>
+    <PageHeader />
     <main className={`site-content${twoColumn ? ' two-column' : ''}`}>
       {children}
     </main>
-    <footer className="site-footer">
-      <a
-        href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Powered by
-        {' '}
-        <span>
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-        </span>
-      </a>
-    </footer>
+    <PageFooter />
   </>
 );

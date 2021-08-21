@@ -1,8 +1,12 @@
-@import './Color.scss';
-@import './Normalise.scss';
+@import 'color';
+@import 'normalise';
 @import '../../node_modules/milligram/src/milligram.sass';
-@import './Button.scss';
-@import './Link.scss';
+@import 'button';
+@import 'link';
+@import 'pageheader';
+@import 'pagefooter';
+@import 'stepspage';
+@import 'card';
 
 h1,
 h2,
@@ -10,88 +14,59 @@ h3,
 h4,
 h5,
 h6 {
-  letter-spacing: 0;
   font-weight: 500;
+  letter-spacing: 0;
 }
 
 body {
   background-color: #f0efef;
 }
 
-input[type="color"], 
-input[type="date"], 
-input[type="datetime"], 
-input[type="datetime-local"], 
-input[type="email"], 
-input[type="month"], 
-input[type="number"], 
-input[type="password"], 
-input[type="search"], 
-input[type="tel"], 
-input[type="text"], 
-input[type="url"], 
-input[type="week"], 
-input:not([type]), 
-textarea, 
+input[type='color'],
+input[type='date'],
+input[type='datetime'],
+input[type='datetime-local'],
+input[type='email'],
+input[type='month'],
+input[type='number'],
+input[type='password'],
+input[type='search'],
+input[type='tel'],
+input[type='text'],
+input[type='url'],
+input[type='week'],
+input:not([type]),
+textarea,
 select {
-  background-color: white;
+  background-color: #fff;
 }
 
 ol::marker {
-  color: red
+  color: #f00;
 }
 
 * {
   box-sizing: border-box;
 }
 
-.site-header {
-  background-color: white;
-  border-bottom: 1px solid $color-quinary;
-  padding: .5rem 1rem;
-  
-  a {
-    align-items: center;
-    display: flex;
-    width: fit-content;
-  }
-
-  img {
-    height: 5rem;
-  }
-
-  h4 {
-    margin: 0;
-    font-style: italic;
-  }
-}
-
-.site-footer {
-  align-content: center;
-  background-color: white;
-  border-top: 1px solid $color-quinary;
-  display: flex;
-  justify-content: center;
-  padding: .25rem 1rem;
-  width: 100%;
-}
-
 .site-content {
   padding: 2rem;
 
   &.two-column {
+    align-content: start;
     display: grid;
     gap: 2rem;
     grid-template-columns: 1fr 1fr;
-    align-content: start;
   }
 }
 
+/* stylelint-disable-next-line */
 #__next {
   display: grid;
   grid-template-rows: auto 1fr auto;
   height: 100vh;
-
+  
+  /* stylelint-disable-next-line */
   > main {
     overflow: scroll;
   }
@@ -99,8 +74,8 @@ ol::marker {
 
 .card-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
+  grid-template-columns: repeat(4, 1fr);
   margin-bottom: 2rem;
 
   > .card {
@@ -108,54 +83,6 @@ ol::marker {
   }
 }
 
-.card {
-  background-color: white;
-  display: grid;
-  grid-template-rows: auto auto auto;
-  grid-template-areas: "picture" "title" "content";
-  margin-bottom: 2rem;
-
-  picture {
-    align-items: center;
-    background-color: $color-quinary;
-    display: flex;
-    grid-area: picture;
-    height: 0;
-    justify-content: center;
-    padding-bottom: 70%;
-    position: relative;
-    text-align: center;
-
-    img {
-      max-height: 90%;
-      max-width: 90%;
-      position: absolute;
-      top: 5%;
-    }
-  }
-
-  h4, h5 {
-    margin-bottom: .5rem;
-  }
-
-  h4 {
-    color: $color-primary;
-  }
-
-  .content {
-    grid-area: content;
-    padding: 1rem;
-
-    > *:last-child {
-      margin-bottom: 0;
-    }
-  }
-  
-  header {
-    grid-area: title; 
-    padding: 1rem;
-  }
-}
 
 textarea {
   overflow: scroll;
@@ -172,6 +99,6 @@ textarea {
 }
 
 pre {
-  overflow: scroll;
   max-height: 40rem;
+  overflow: scroll;
 }

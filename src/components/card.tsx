@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 interface CardImage {
   src: string;
@@ -9,12 +10,13 @@ interface Props {
   image?: CardImage|undefined;
   title: string;
   subtitle?: string|undefined;
+  horizontal?: boolean;
 }
 
 export const Card: React.FC<Props> = ({
-  image, title, subtitle, children,
+  image, title, subtitle, children, horizontal,
 }) => (
-  <article className="card">
+  <motion.article className={`card${horizontal ? ' horizontal' : ''}`} layoutId={`card-${title}`}>
     <header>
       <h4>{title}</h4>
       {subtitle && <h5>{subtitle}</h5>}
@@ -31,5 +33,5 @@ export const Card: React.FC<Props> = ({
       </picture>
     )}
     {children && <section className="content">{children}</section>}
-  </article>
+  </motion.article>
 );

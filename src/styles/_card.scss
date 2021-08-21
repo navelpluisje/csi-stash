@@ -1,0 +1,62 @@
+.card {
+  background-color: #f00;
+  display: grid;
+  grid-template-areas: 'picture' 'title' 'content';
+  grid-template-rows: auto auto auto;
+  margin-bottom: 2rem;
+
+  picture {
+    align-items: center;
+    background-color: $color-quinary;
+    display: flex;
+    grid-area: picture;
+    height: 0;
+    justify-content: center;
+    padding-bottom: 70%;
+    position: relative;
+    text-align: center;
+
+    img {
+      max-height: 90%;
+      max-width: 90%;
+      position: absolute;
+      top: 5%;
+    }
+  }
+
+  &.horizontal {
+    grid-template-areas: 
+      'picture title'
+      'picture content';
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+
+    picture {
+      min-width: 130px;
+      width: 17vw;
+    }
+  }
+
+  h4,
+  h5 {
+    margin-bottom: .5rem;
+  }
+
+  h4 {
+    color: $color-primary;
+  }
+
+  .content {
+    grid-area: content;
+    padding: 1rem;
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  header {
+    grid-area: title;
+    padding: 1rem;
+  }
+}

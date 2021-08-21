@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page } from '@components/page';
+import { StepsPage } from '@components/stepsPage';
 import { Card } from '@components/card';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -10,28 +10,26 @@ const ControllerPage = () => {
   const { data = [], isLoading } = useGetControllerByIdQuery(parseInt(query.id as string, 10));
 
   return (
-    <Page>
+    <StepsPage>
       <Head>
         <title>CSI-Stash :: Controllers</title>
       </Head>
 
-      <h2>Controller</h2>
-      <p>Select your configuration</p>
+      <h2>Configuration</h2>
       {isLoading && <div>Loading.......</div> }
-      <section className="card-container">
-        {data.length > 0 && (
-          <Card
-            title={data[0].brand}
-            subtitle={data[0].model}
-            image={{
-              src: `/images/controllers/${data[0].brand.toLowerCase()}-${data[0].model.toLowerCase()}.png`,
-              alt: 'The controller',
-            }}
-          />
-        )}
-      </section>
+      {data.length > 0 && (
+        <Card
+          title={data[0].brand}
+          subtitle={data[0].model}
+          image={{
+            src: `/images/controllers/${data[0].brand.toLowerCase()}-${data[0].model.toLowerCase()}.png`,
+            alt: 'The controller',
+          }}
+          horizontal
+        />
+      )}
       <h3>Configurations</h3>
-    </Page>
+    </StepsPage>
   );
 };
 
