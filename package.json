@@ -6,8 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint . --ext ts,tsx",
-    "stylelint": "stylelint . --fix"
+    "lint:es": "eslint . --ext ts,tsx",
+    "lint:style": "stylelint . --fix"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^1.5.0",
