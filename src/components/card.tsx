@@ -16,7 +16,7 @@ interface Props {
 export const Card: React.FC<Props> = ({
   image, title, subtitle, children, horizontal,
 }) => (
-  <motion.article className={`card${horizontal ? ' horizontal' : ''}`} layoutId={`card-${title}`}>
+  <motion.article className={`card${horizontal ? ' horizontal' : ''}`} layoutId={`card-${title}=${subtitle}`}>
     <header>
       <h4>{title}</h4>
       {subtitle && <h5>{subtitle}</h5>}
