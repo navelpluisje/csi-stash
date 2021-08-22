@@ -10,13 +10,13 @@ export const getControllers = () => `
     controller
 `;
 
-export const getControllerById = (id: number) => `
+export const getControllerById = (id: string) => `
   SELECT 
     id,
     brand, 
     model, 
     (SELECT name FROM author WHERE id = author_id) as author,
-    (SELECT count(id) FROM configuration WHERE controller_id = id) as configurations
+    (SELECT count(id) FROM configuration WHERE controller_id = ${id}) as configurations
   FROM 
     controller
   WHERE
@@ -80,7 +80,7 @@ const getUpdateValue = (value: string) => {
   return `'${value}'`;
 };
 
-export const updateController = (values: updateControllerValues, id: number) => `
+export const updateController = (values: updateControllerValues, id: number) => (`
   UPDATE 
     controller 
   SET 
@@ -93,4 +93,4 @@ export const updateController = (values: updateControllerValues, id: number) => 
   }, '')}
   WHERE
     id=${id}
-`;
+`);

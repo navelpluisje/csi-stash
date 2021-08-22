@@ -31,6 +31,7 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': ['error'],
     'import/prefer-default-export': 'off',
     'react/prop-types': 'off',
+    'react-hooks/exhaustive-deps': 'off',
     'react/jsx-props-no-spreading': [2, {
       exceptions: ['input'],
     }],

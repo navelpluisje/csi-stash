@@ -4,10 +4,16 @@ import { Card } from '@components/card';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useGetControllerByIdQuery } from '@store/controller.service';
+import { useGetAllConfigurationsQuery } from '@store/configuration.service';
+import { Configuration, ConfigurationList } from '@components/configuration';
 
 const ControllerPage = () => {
   const { query } = useRouter();
   const { data = [], isLoading } = useGetControllerByIdQuery(parseInt(query.id as string, 10));
+  const {
+    data: configurations,
+    isLoading: configLoading,
+  } = useGetAllConfigurationsQuery(query.id as string);
 
   return (
     <StepsPage>
@@ -29,6 +35,21 @@ const ControllerPage = () => {
         />
       )}
       <h3>Configurations</h3>
+      {configLoading && (
+        <div>Loading......</div>
+      )}
+      {!configurations && !configLoading && (
+        <div>No configurations yet</div>
+      )}
+      <ConfigurationList>
+
+        {configurations?.map((config) => (
+          <Configuration
+            name={config.name}
+            author={config.author}
+          />
+        ))}
+      </ConfigurationList>
     </StepsPage>
   );
 };

@@ -1,12 +1,16 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { rootReducer } from '@store/reducers';
 import { controllerApi } from '@store/controller.service';
+import { configurationApi } from '@store/configuration.service';
 import { adminControllerApi } from '@store/controller.admin.service';
+import { adminConfigurationApi } from '@store/configuration.admin.service';
 
 const store = configureStore({
   reducer: {
     [controllerApi.reducerPath]: controllerApi.reducer,
     [adminControllerApi.reducerPath]: adminControllerApi.reducer,
+    [configurationApi.reducerPath]: configurationApi.reducer,
+    [adminConfigurationApi.reducerPath]: adminConfigurationApi.reducer,
     ...rootReducer,
   },
   middleware: [...getDefaultMiddleware()],

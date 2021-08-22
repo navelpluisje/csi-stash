@@ -4,6 +4,7 @@ export interface Controller {
   id: number;
   brand: string;
   model: string;
+  configurations: number;
 }
 type ControllerResponse = Array<Controller>
 

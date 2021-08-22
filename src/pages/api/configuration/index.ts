@@ -1,4 +1,4 @@
-import { getControllerById } from '@queries/controllers';
+import { getControllers } from '@queries/controllers';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { PSDB } from 'planetscale-node';
 
@@ -6,21 +6,16 @@ const conn = new PSDB('main');
 
 const Controllers = async (req: NextApiRequest, res: NextApiResponse) => {
   const {
-    query,
     method,
   } = req;
 
   switch (method) {
     case 'GET':
       try {
-        if (query.id === 'NaN') {
-          res.statusCode = 200;
-          res.json([]);
-          return;
-        }
-        const [result] = await conn.query(getControllerById(query.id as string), {});
+        const [getRows] = await conn.query(getControllers(), {});
         res.statusCode = 200;
-        res.json(result);
+
+        res.json(getRows);
       } catch (e) {
         const error = new Error('An error occurred while connecting to the database');
         // @ts-ignore

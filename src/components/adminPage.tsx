@@ -8,7 +8,7 @@ interface Props {
 
 export const Page: React.FC<Props> = ({ children, twoColumn }) => (
   <>
-    <header className="site-header">
+    <header className="page-header">
       <Link href="/">
         <img src="/images/logo.png" alt="" />
         <h4>-stash</h4>
@@ -18,7 +18,7 @@ export const Page: React.FC<Props> = ({ children, twoColumn }) => (
     <main className={`site-content${twoColumn ? ' two-column' : ''}`}>
       {children}
     </main>
-    <footer className="site-footer">
+    <footer className="page-footer">
       <a
         href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
         target="_blank"

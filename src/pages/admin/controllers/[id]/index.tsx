@@ -8,11 +8,16 @@ import { useForm } from 'react-hook-form';
 import { Card } from '@components/card';
 import { Link } from '@components/atoms/link';
 import { useGetControllerByIdQuery, useUpdateControllerMutation } from '@store/controller.admin.service';
+import { useGetConfigurationsByControllerIdQuery } from '@store/configuration.admin.service';
 import { readFileContent } from '@utils/readFileContent';
 
 const Admin = () => {
   const { query, push } = useRouter();
   const { data = [], isLoading } = useGetControllerByIdQuery(parseInt(query.id as string, 10));
+  const {
+    data: configurations = [],
+    // isLoading,
+  } = useGetConfigurationsByControllerIdQuery(query.id as string);
   const [updateController, {
     isLoading: isUpdating, isUninitialized, isSuccess,
   }] = useUpdateControllerMutation();
@@ -92,7 +97,10 @@ const Admin = () => {
           )}
         </Card>
         <Card title="Configurations">
-          <button type="submit">Add Configurations</button>
+          {configurations.map((config) => (
+            <div>{config.name}</div>
+          ))}
+          <Link href={`/admin/controllers/${query.id}/configurations`} button>Add Configuration</Link>
         </Card>
       </section>
       <section>
