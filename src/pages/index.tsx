@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import { Page } from '@components/page';
+import { Page } from '@components/organisms/page';
 import { Link } from '@components/atoms/link';
 import styles from '../styles/Home.module.scss';
 

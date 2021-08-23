@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page } from '@components/adminPage';
+import { Page } from '@components/organisms/adminPage';
 import Head from 'next/head';
 import { Link } from '@components/atoms/link';
 

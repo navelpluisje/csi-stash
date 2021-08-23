@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect } from 'react';
-import { Page } from '@components/adminPage';
+import { Page } from '@components/organisms/adminPage';
 import Head from 'next/head';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { useForm } from 'react-hook-form';
-import { Card } from '@components/card';
+import { Card } from '@components/atoms/card';
 import { Link } from '@components/atoms/link';
 import {
   useGetConfigurationByIdQuery, useUpdateConfigurationMutation,
@@ -65,6 +65,7 @@ const Admin = () => {
         </Card>
         <Card title="Files">
           Files
+          <button type="button">Add File</button>
         </Card>
       </section>
       <section>

@@ -12,6 +12,7 @@ export const getConfigurationsByControllerId = (id: string) => `
 
 export const getAdminConfigurationById = (id: string) => `
   SELECT 
+    id,
     name, 
     description, 
     (SELECT name FROM author WHERE id = author_id) as author
@@ -23,6 +24,7 @@ export const getAdminConfigurationById = (id: string) => `
 
 export const getAdminConfigurationsByControllerId = (id: string) => `
   SELECT 
+    id,
     name, 
     description, 
     (SELECT name FROM author WHERE id = author_id) as author
@@ -34,6 +36,7 @@ export const getAdminConfigurationsByControllerId = (id: string) => `
 
 export const getAdminConfigurations = () => `
   SELECT 
+    id,
     brand, 
     model, 
     created,

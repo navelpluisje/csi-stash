@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page } from '@components/adminPage';
+import { Page } from '@components/organisms/adminPage';
 import Head from 'next/head';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { Link } from '@components/atoms/link';

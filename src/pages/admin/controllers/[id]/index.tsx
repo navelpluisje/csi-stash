@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect } from 'react';
-import { Page } from '@components/adminPage';
+import { Page } from '@components/organisms/adminPage';
 import Head from 'next/head';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
-import { Card } from '@components/card';
+import { Card } from '@components/atoms/card';
 import { Link } from '@components/atoms/link';
 import { useGetControllerByIdQuery, useUpdateControllerMutation } from '@store/controller.admin.service';
 import { useGetConfigurationsByControllerIdQuery } from '@store/configuration.admin.service';
@@ -97,9 +97,24 @@ const Admin = () => {
           )}
         </Card>
         <Card title="Configurations">
-          {configurations.map((config) => (
-            <div>{config.name}</div>
-          ))}
+          <table>
+            <thead>
+              <tr>
+                <th>name</th>
+                <th>author</th>
+                <th>actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {configurations.map((config) => (
+                <tr>
+                  <td>{config.name}</td>
+                  <td>{config.author}</td>
+                  <td><Link href={`/admin/controllers/${query.id}/configurations/${config.id}`}>Edit</Link></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
           <Link href={`/admin/controllers/${query.id}/configurations`} button>Add Configuration</Link>
         </Card>
       </section>

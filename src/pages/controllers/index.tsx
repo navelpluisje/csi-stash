@@ -1,6 +1,6 @@
 import React from 'react';
-import { StepsPage } from '@components/stepsPage';
-import { Card } from '@components/card';
+import { StepsPage } from '@components/organisms/stepsPage';
+import { Card } from '@components/atoms/card';
 import Head from 'next/head';
 import { useGetAllControllersQuery, usePrefetch } from '@store/controller.service';
 import { Link } from '@components/atoms/link';

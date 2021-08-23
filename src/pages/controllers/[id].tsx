@@ -1,11 +1,11 @@
 import React from 'react';
-import { StepsPage } from '@components/stepsPage';
-import { Card } from '@components/card';
+import { StepsPage } from '@components/organisms/stepsPage';
+import { Card } from '@components/atoms/card';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useGetControllerByIdQuery } from '@store/controller.service';
 import { useGetAllConfigurationsQuery } from '@store/configuration.service';
-import { Configuration, ConfigurationList } from '@components/configuration';
+import { Configuration, ConfigurationList } from '@components/atoms/configuration';
 
 const ControllerPage = () => {
   const { query } = useRouter();
