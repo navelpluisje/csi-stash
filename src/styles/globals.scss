@@ -8,6 +8,7 @@
 @import 'stepspage';
 @import 'configurationlist';
 @import 'card';
+@import 'modal';
 
 h1,
 h2,
@@ -102,4 +103,5 @@ textarea {
 pre {
   max-height: 40rem;
   overflow: scroll;
+  tab-size: 2;
 }

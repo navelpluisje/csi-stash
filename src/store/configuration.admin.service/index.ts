@@ -11,9 +11,13 @@ export interface Configuration {
   modified: string;
 }
 type ControllerResponse = Array<Configuration>
-interface MutationController {
+interface MutationConfiguration {
   id?: string;
   body: Partial<Configuration>;
+}
+
+export interface File {
+
 }
 
 // Define a service using a base URL and expected endpoints
@@ -28,7 +32,7 @@ export const adminConfigurationApi = createApi({
     getConfigurationsByControllerId: builder.query<ControllerResponse, string>({
       query: (id) => `_/${id}`,
     }),
-    updateConfiguration: builder.mutation<Configuration, MutationController>({
+    updateConfiguration: builder.mutation<Configuration, MutationConfiguration>({
       query(data) {
         const { id, body } = data;
         return {
@@ -39,7 +43,7 @@ export const adminConfigurationApi = createApi({
       },
       invalidatesTags: ['Configuration'],
     }),
-    addConfiguration: builder.mutation<Configuration, MutationController>({
+    addConfiguration: builder.mutation<Configuration, MutationConfiguration>({
       query(data) {
         const { body } = data;
         return {

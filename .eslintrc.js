@@ -33,7 +33,7 @@ module.exports = {
     'react/prop-types': 'off',
     'react-hooks/exhaustive-deps': 'off',
     'react/jsx-props-no-spreading': [2, {
-      exceptions: ['input'],
+      exceptions: ['input', 'textarea'],
     }],
     '@next/next/no-img-element': 'off',
   },

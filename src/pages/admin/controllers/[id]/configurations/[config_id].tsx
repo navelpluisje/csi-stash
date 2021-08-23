@@ -11,6 +11,8 @@ import {
   useGetConfigurationByIdQuery, useUpdateConfigurationMutation,
 } from '@store/configuration.admin.service';
 import { useRouter } from 'next/router';
+import { AddZoneForm } from '@components/organisms/addZoneForm';
+import { ZoneList } from '@components/organisms/zoneList';
 
 const Admin = () => {
   const { query, push } = useRouter();
@@ -64,8 +66,8 @@ const Admin = () => {
           </form>
         </Card>
         <Card title="Files">
-          Files
-          <button type="button">Add File</button>
+          <ZoneList zones={[{ name: 'fileName.zon' }]} />
+          <AddZoneForm />
         </Card>
       </section>
       <section>
