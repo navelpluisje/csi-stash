@@ -1,4 +1,4 @@
-@import 'color';
+@import './color';
 @import 'normalise';
 @import '../../node_modules/milligram/src/milligram.sass';
 @import 'button';
@@ -67,7 +67,7 @@ ol::marker {
   display: grid;
   grid-template-rows: auto 1fr auto;
   height: 100vh;
-  
+
   /* stylelint-disable-next-line */
   > main {
     overflow: scroll;
