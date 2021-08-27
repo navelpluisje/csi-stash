@@ -1,14 +1,14 @@
-@import './color.scss';
-@import './normalise.scss';
+@import 'color';
+@import 'normalise';
 @import '../../node_modules/milligram/src/milligram.sass';
-@import './button.scss';
-@import './link.scss';
-@import './pageheader.scss';
-@import './pagefooter.scss';
-@import './stepspage.scss';
-@import './configurationlist.scss';
-@import './card.scss';
-@import './modal.scss';
+@import 'button';
+@import 'link';
+@import 'pageheader';
+@import 'pagefooter';
+@import 'stepspage';
+@import 'configurationlist';
+@import 'card';
+@import 'modal';
 
 h1,
 h2,

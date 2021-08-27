@@ -30,6 +30,10 @@ input[type='submit'] {
     width: 100%;
   }
 
+  &.button.icon {
+    padding: 0 1rem;
+  }
+
   &:focus,
   &:hover {
     background-color: darken($color-primary, 20);
