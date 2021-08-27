@@ -25,7 +25,7 @@
   }
 
   &.horizontal {
-    grid-template-areas: 
+    grid-template-areas:
       'picture title'
       'picture content';
     grid-template-columns: auto 1fr;
@@ -54,7 +54,7 @@
       margin-bottom: 0;
     }
   }
-  
+
   header {
     grid-area: title;
     padding: 1rem;
