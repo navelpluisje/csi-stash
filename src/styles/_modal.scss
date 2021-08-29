@@ -1,7 +1,7 @@
 .modal {
   background-color: #fff;
   left: 50%;
-  max-width: 80rem;
+  max-width: 60rem;
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -12,21 +12,21 @@
     border-bottom: 1px solid $color-quaternary;
     color: $color-primary;
     display: flex;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 500;
     justify-content: space-between;
-    padding: 1rem;
+    padding: .75rem;
     width: 100%;
   }
 
   section {
     padding: 1rem;
-  } 
+  }
 }
 
 .modal-overlay {
   backdrop-filter: blur(2px);
-  background-color: #55555555;
+  background-color: #5555;
   bottom: 0;
   left: 0;
   position: absolute;

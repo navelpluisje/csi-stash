@@ -16,6 +16,8 @@
     "jsx": "preserve",
     "paths": {
       "@components/*": ["src/components/*"],
+      "@constants": ["src/constants/index.ts"],
+      "@constants/*": ["src/constants/*"],
       "@queries/*": ["src/queries/*"],
       "@utils/*": ["src/utils/*"],
       "@store/*": ["src/store/*"],

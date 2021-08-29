@@ -22,19 +22,20 @@ module.exports = {
     '@typescript-eslint',
   ],
   rules: {
-    'react/jsx-filename-extension': [
-      2, {
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
-      },
-    ],
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
     'import/prefer-default-export': 'off',
     'react/prop-types': 'off',
     'react-hooks/exhaustive-deps': 'off',
+    'react/jsx-filename-extension': [
+      2, {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    ],
     'react/jsx-props-no-spreading': [2, {
       exceptions: ['input', 'textarea'],
     }],
+    'react/require-default-props': 'off',
     '@next/next/no-img-element': 'off',
   },
   settings: {
@@ -42,6 +43,7 @@ module.exports = {
       alias: {
         map: [
           ['@components', './src/components'],
+          ['@constants', './src/constants'],
           ['@queries', './src/queries'],
           ['@utils', './src/utils'],
           ['@hooks', './src/hooks'],
