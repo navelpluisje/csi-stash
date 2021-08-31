@@ -9,7 +9,8 @@ import { Card } from '@components/atoms/card';
 import { Link } from '@components/atoms/link';
 import { useGetControllerByIdQuery, useUpdateControllerMutation } from '@store/controller.admin.service';
 import { useGetConfigurationsByControllerIdQuery } from '@store/configuration.admin.service';
-import { readFileContent } from '@utils/readFileContent';
+import { FormInput } from '@components/atoms/formInput';
+import { FileUpload } from '@components/atoms/fileUpload';
 
 const Admin = () => {
   const { query, push } = useRouter();
@@ -22,11 +23,8 @@ const Admin = () => {
     isLoading: isUpdating, isUninitialized, isSuccess,
   }] = useUpdateControllerMutation();
   const {
-    register, handleSubmit, setValue, watch,
+    register, handleSubmit, setValue, control,
   } = useForm();
-
-  const filename = watch('filename');
-  const file = watch('file');
 
   useEffect(() => {
     if (setValue && data.length > 0) {
@@ -43,16 +41,6 @@ const Admin = () => {
       push('/admin/controllers');
     }
   }, [isSuccess, isUninitialized]);
-
-  const handleUpload = async (event: Event) => {
-    const target = event.target as HTMLInputElement;
-    const uploadFile = target.files ? target.files[0] : null;
-    if (uploadFile) {
-      const fileContent = await readFileContent(uploadFile);
-      setValue('file', fileContent);
-      setValue('filename', uploadFile.name);
-    }
-  };
 
   const onSubmit = async (values: Record<string, string>) => {
     updateController({
@@ -74,24 +62,24 @@ const Admin = () => {
           {data.length > 0 && (
             <form onSubmit={handleSubmit(onSubmit)}>
               <input {...register('id')} type="hidden" />
-              <div>
-                <label htmlFor="brand">Brand</label>
-                <input {...register('brand')} id="brand" />
-              </div>
-              <div>
-                <label htmlFor="model">Model</label>
-                <input {...register('model')} id="model" />
-              </div>
-              <div>
-                <label htmlFor="file">Mst file</label>
-                <label className="button button-outline upload-button">
-                  {/* @ts-ignore */}
-                  <input id="upload" type="file" onChange={handleUpload} />
-                  Select MST-file
-                </label>
-                {filename}
-                <pre><code>{file }</code></pre>
-              </div>
+              <FormInput
+                control={control}
+                name="brand"
+                label="Brand"
+                rules={{ required: 'Brand is required' }}
+              />
+              <FormInput
+                control={control}
+                name="model"
+                label="Model"
+                rules={{ required: 'Model is required' }}
+              />
+              <FileUpload
+                label="MST-file"
+                control={control}
+                setValue={setValue}
+                accept=".mst, .txt"
+              />
               <button type="submit" disabled={isUpdating}>Save</button>
             </form>
           )}

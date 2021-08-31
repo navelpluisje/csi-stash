@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect } from 'react';
 import { Page } from '@components/organisms/adminPage';
 import Head from 'next/head';
@@ -13,6 +11,7 @@ import {
 import { useRouter } from 'next/router';
 import { AddZoneForm } from '@components/organisms/addZoneForm';
 import { ZoneList } from '@components/organisms/zoneList';
+import { FormInput } from '@components/atoms/formInput';
 
 const Admin = () => {
   const { query, push } = useRouter();
@@ -24,7 +23,7 @@ const Admin = () => {
     isUninitialized, isSuccess,
   }] = useUpdateConfigurationMutation();
   const {
-    register, handleSubmit, setValue,
+    handleSubmit, setValue, control,
   } = useForm();
 
   useEffect(() => {
@@ -54,14 +53,22 @@ const Admin = () => {
       <section>
         <Card title="Edit controller">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div>
-              <label htmlFor="name">Name</label>
-              <input {...register('name')} id="name" />
-            </div>
-            <div>
-              <label htmlFor="description">Description</label>
-              <textarea {...register('description')} id="description" />
-            </div>
+            <FormInput
+              control={control}
+              name="name"
+              label="Name"
+              rules={{
+                required: 'Name is required',
+              }}
+            />
+            <FormInput
+              control={control}
+              name="description"
+              label="Description"
+              rules={{
+                required: 'Description is required',
+              }}
+            />
             <button type="submit" disabled={isLoading}>Save</button>
           </form>
         </Card>

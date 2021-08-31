@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect } from 'react';
 import { Page } from '@components/organisms/adminPage';
 import Head from 'next/head';
@@ -7,9 +5,10 @@ import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { useForm } from 'react-hook-form';
 import { Card } from '@components/atoms/card';
 import { Link } from '@components/atoms/link';
-import { readFileContent } from '@utils/readFileContent';
 import { useAddControllerMutation } from '@store/controller.admin.service';
 import { useRouter } from 'next/router';
+import { FormInput } from '@components/atoms/formInput';
+import { FileUpload } from '@components/atoms/fileUpload';
 
 const Admin = () => {
   const { push } = useRouter();
@@ -17,10 +16,8 @@ const Admin = () => {
     isLoading, isUninitialized, isSuccess,
   }] = useAddControllerMutation();
   const {
-    register, handleSubmit, setValue, watch,
+    handleSubmit, setValue, control,
   } = useForm();
-  const filename = watch('filename');
-  const file = watch('file');
 
   const onSubmit = async (values: Record<string, string>) => {
     addController({ body: values });
@@ -32,16 +29,6 @@ const Admin = () => {
     }
   }, [isSuccess, isUninitialized]);
 
-  const handleUpload = async (event: Event) => {
-    const target = event.target as HTMLInputElement;
-    const uploadFile = target.files ? target.files[0] : null;
-    if (uploadFile) {
-      const fileContent = await readFileContent(uploadFile);
-      setValue('file', fileContent);
-      setValue('filename', file.name);
-    }
-  };
-
   return (
     <Page twoColumn>
       <Head>
@@ -50,24 +37,28 @@ const Admin = () => {
 
       <Card title="Create new controller">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div>
-            <label htmlFor="brand">Brand</label>
-            <input {...register('brand')} id="brand" />
-          </div>
-          <div>
-            <label htmlFor="model">Model</label>
-            <input {...register('model')} id="model" />
-          </div>
-          <div>
-            <label htmlFor="file">Mst file</label>
-            <label className="button button-outline upload-button">
-              {/* @ts-ignore */}
-              <input id="upload" type="file" onChange={handleUpload} />
-              Select MST-file
-            </label>
-            {filename}
-            <pre><code>{file }</code></pre>
-          </div>
+          <FormInput
+            control={control}
+            name="brand"
+            label="Brand"
+            rules={{
+              required: 'Brand is required',
+            }}
+          />
+          <FormInput
+            control={control}
+            name="model"
+            label="Model"
+            rules={{
+              required: 'Model is required',
+            }}
+          />
+          <FileUpload
+            label="MST-file"
+            control={control}
+            setValue={setValue}
+            accept=".mst, .txt"
+          />
           <button type="submit" disabled={isLoading}>Save</button>
         </form>
       </Card>

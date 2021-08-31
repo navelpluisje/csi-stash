@@ -9,6 +9,7 @@ import { Card } from '@components/atoms/card';
 import { Link } from '@components/atoms/link';
 import { useAddConfigurationMutation } from '@store/configuration.admin.service';
 import { useRouter } from 'next/router';
+import { FormInput } from '@components/atoms/formInput';
 
 const Admin = () => {
   const { push, query } = useRouter();
@@ -16,7 +17,7 @@ const Admin = () => {
     isLoading, isUninitialized, isSuccess,
   }] = useAddConfigurationMutation();
   const {
-    register, handleSubmit,
+    register, handleSubmit, control,
   } = useForm();
 
   const onSubmit = async (values: Record<string, string>) => {
@@ -44,14 +45,22 @@ const Admin = () => {
               type="hidden"
               defaultValue={query.id}
             />
-            <div>
-              <label htmlFor="name">Name</label>
-              <input {...register('name')} id="name" />
-            </div>
-            <div>
-              <label htmlFor="description">Description</label>
-              <textarea {...register('description')} id="description" />
-            </div>
+            <FormInput
+              control={control}
+              name="name"
+              label="Name"
+              rules={{
+                required: 'Name is required',
+              }}
+            />
+            <FormInput
+              control={control}
+              name="description"
+              label="Description"
+              rules={{
+                required: 'Name is required',
+              }}
+            />
             <button type="submit" disabled={isLoading}>Save</button>
           </form>
         </Card>
