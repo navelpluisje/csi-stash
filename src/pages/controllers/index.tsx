@@ -5,11 +5,11 @@ import Head from 'next/head';
 import { Link } from '@components/atoms/link';
 import { useAppDispatch, useAppSelector } from '@hooks/redux';
 import { fetchAllControllers, fetchControllerById } from '@store/controllers/actions';
-import { getControllerById, getControllers, isControllersLoading } from '@store/controllers/selectors';
+import { getControllers, isAllControllersLoading } from '@store/controllers/selectors';
 
 const ControllerPage = () => {
   const controllers = useAppSelector(getControllers);
-  const isLoading = useAppSelector(isControllersLoading);
+  const isLoading = useAppSelector(isAllControllersLoading);
   const dispatch = useAppDispatch();
 
   useEffect(() => {

@@ -5,7 +5,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Layout } from '@components/atoms/layout';
 import { useAppDispatch, useAppSelector } from '@hooks/redux';
-import { getControllerById, isControllersLoading } from '@store/controllers/selectors';
+import { getControllerById, isControllerByIdLoading } from '@store/controllers/selectors';
 import { fetchConfigurationsByController } from '@store/configuration/actions';
 import { Configuration, ConfigurationList } from '@components/atoms/configuration';
 import { getConfigurationByController } from '@store/configuration/selectors';
@@ -17,7 +17,7 @@ const ControllerPage = () => {
     getConfigurationByController(parseInt(query.controllerId as string, 10))
   );
   const controller = useAppSelector(getControllerById(parseInt(query.controllerId as string, 10)));
-  const isLoading = useAppSelector(isControllersLoading);
+  const isLoading = useAppSelector(isControllerByIdLoading);
   const dispatch = useAppDispatch();
 
   useEffect(() => {

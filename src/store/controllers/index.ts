@@ -4,10 +4,15 @@ import { ControllerCollection } from './types';
 
 type ControllerState = {
   controllers: ControllerCollection,
-  loading: boolean,
+  loadingById: boolean,
+  loadingAll: boolean,
 }
 
-const initialState = { controllers: [], loading: false } as ControllerState;
+const initialState = {
+  controllers: [],
+  loadingById: false,
+  loadingAll: false,
+} as ControllerState;
 
 export const controllerReducer = createReducer(initialState, (builder) => {
   builder
@@ -18,27 +23,28 @@ export const controllerReducer = createReducer(initialState, (builder) => {
           ...acc,
           [controller.id]: controller,
         }), {});
-        state.loading = false;
+        state.loadingAll = false;
       }
     )
     .addCase(
       fetchControllerById.fulfilled,
       (state, { payload }) => {
-        console.log(payload)
-        state.controllers[payload.id] = payload;
-        state.loading = false;
+        if (payload !== null) {
+          state.controllers[payload.id] = payload;
+          state.loadingById = false;
+        }
       }
     )
     .addCase(
       fetchAllControllers.pending,
       (state) => {
-        state.loading = true;
+        state.loadingAll = true;
       }
     )
     .addCase(
-      fetchAllControllers.rejected,
+      fetchControllerById.rejected,
       (state) => {
-        state.loading = false;
+        state.loadingById = false;
       }
     );
 });
