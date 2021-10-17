@@ -35,6 +35,13 @@
       min-width: 130px;
       width: 17vw;
     }
+
+    &.small {
+      picture {
+        width: 130px;
+      }
+
+    }
   }
 
   h4,

@@ -20,7 +20,7 @@ interface MutationController {
 export const adminControllerApi = createApi({
   reducerPath: 'adminControllerApi',
   tagTypes: ['Controller'],
-  baseQuery: fetchBaseQuery({ baseUrl: '/api/admin/controller/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: '/api/admin/controller' }),
   endpoints: (builder) => ({
     getAllControllers: builder.query<ControllerResponse, void>({
       query: () => '',

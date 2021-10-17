@@ -11,12 +11,16 @@ interface Props {
   title: string;
   subtitle?: string|undefined;
   horizontal?: boolean;
+  small?: boolean;
 }
 
 export const Card: React.FC<Props> = ({
-  image, title, subtitle, children, horizontal,
+  image, title, subtitle, children, horizontal, small
 }) => (
-  <motion.article className={`card${horizontal ? ' horizontal' : ''}`} layoutId={`card-${title}=${subtitle}`}>
+  <motion.article   
+    className={`card${horizontal ? ' horizontal' : ''}${small ? ' small' : ''}`} 
+    layoutId={`card-${title}=${subtitle}`}
+  >
     <header>
       <h4>{title}</h4>
       {subtitle && <h5>{subtitle}</h5>}

@@ -1,4 +1,4 @@
-import { getConfigurationsByControllerId } from '@queries/configurations';
+import { getConfigurationById } from '@queries/configurations';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { PSDB } from 'planetscale-node';
 
@@ -19,7 +19,7 @@ const Controllers = async (req: NextApiRequest, res: NextApiResponse) => {
           return;
         }
         const [result] = await conn.query(
-          getConfigurationsByControllerId(query.id as string), {},
+          getConfigurationById(query.id as string), {},
         );
         res.statusCode = 200;
         res.json(result);

@@ -1,20 +1,26 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import {  persistStore,  persistReducer,  FLUSH,  REHYDRATE,  PAUSE,  PERSIST,  PURGE,  REGISTER,} from 'redux-persist';
+import storage from 'redux-persist/lib/storage'
 import { rootReducer } from '@store/reducers';
-import { controllerApi } from '@store/controller.service';
-import { configurationApi } from '@store/configuration.service';
-import { adminControllerApi } from '@store/controller.admin.service';
-import { adminConfigurationApi } from '@store/configuration.admin.service';
+import { updateMiddleware } from './middleware/updateMiddleware';
+
+const persistConfig = {  key: 'root',  version: 1,  storage,}
+
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 const store = configureStore({
-  reducer: {
-    [controllerApi.reducerPath]: controllerApi.reducer,
-    [adminControllerApi.reducerPath]: adminControllerApi.reducer,
-    [configurationApi.reducerPath]: configurationApi.reducer,
-    [adminConfigurationApi.reducerPath]: adminConfigurationApi.reducer,
-    ...rootReducer,
-  },
-  middleware: [...getDefaultMiddleware()],
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware): any[] => [  
+      ...getDefaultMiddleware({      
+        serializableCheck: {        
+          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],      
+        },    
+      }),
+      updateMiddleware,
+  ],
 });
+
+export const persistor = persistStore(store)
 
 // @ts-ignore
 if (process.env.NODE_ENV !== 'production' && module.hot) {

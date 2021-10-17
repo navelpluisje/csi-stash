@@ -1,49 +1,63 @@
 /* eslint-disable camelcase */
 export const getConfigurationsByControllerId = (id: string) => `
-  SELECT 
-    name, 
-    description, 
+  SELECT
+    id,
+    name,
+    description,
+    controller_id,
     (SELECT name FROM author WHERE id = author_id) as author
-  FROM 
+  FROM
     configuration
   WHERE
     controller_id = ${id}
 `;
 
-export const getAdminConfigurationById = (id: string) => `
-  SELECT 
+export const getConfigurationById = (id: string) => `
+  SELECT
     id,
-    name, 
-    description, 
+    name,
+    description,
     (SELECT name FROM author WHERE id = author_id) as author
-  FROM 
+  FROM
+    configuration
+  WHERE
+    id = ${id}
+`;
+
+export const getAdminConfigurationById = (id: string) => `
+  SELECT
+    id,
+    name,
+    description,
+    (SELECT name FROM author WHERE id = author_id) as author
+  FROM
     configuration
   WHERE
     id = ${id}
 `;
 
 export const getAdminConfigurationsByControllerId = (id: string) => `
-  SELECT 
+  SELECT
     id,
-    name, 
-    description, 
+    name,
+    description,
     (SELECT name FROM author WHERE id = author_id) as author
-  FROM 
+  FROM
     configuration
   WHERE
     controller_id = ${id}
 `;
 
 export const getAdminConfigurations = () => `
-  SELECT 
+  SELECT
     id,
-    brand, 
-    model, 
+    brand,
+    model,
     created,
     modified,
     (SELECT name FROM author WHERE id = author_id) as author,
     (SELECT count(id) FROM configuration WHERE controller_id = id) as configurations
-  FROM 
+  FROM
     controller
 `;
 
@@ -57,9 +71,9 @@ interface insertConfigurationValues {
 export const insertConfiguration = ({
   name, description, controller_id, author_id,
 }: insertConfigurationValues) => `
-  INSERT INTO 
-    configuration (name, description, controller_id, author_id, file, filename) 
-  VALUES 
+  INSERT INTO
+    configuration (name, description, controller_id, author_id, file, filename)
+  VALUES
     ('${name}', '${description}', ${controller_id}, ${author_id}, '', '')
 `;
 
@@ -76,17 +90,17 @@ const getUpdateValue = (value: string) => {
   return `'${value}'`;
 };
 
-export const updateConfiguration = (values:updateConfigurationValues, id: string) => (`
-  UPDATE 
-    configuration 
-  SET 
+export const updateConfiguration = (values: updateConfigurationValues, id: string) => (`
+  UPDATE
+    configuration
+  SET
     ${Object.entries(values).reduce((acc, [key, value], currentIndex, array) => {
-    let result = `${acc}${key}=${getUpdateValue(value)}`;
-    if (currentIndex !== array.length - 1) {
-      result += ',';
-    }
-    return result;
-  }, '')}
+  let result = `${acc}${key}=${getUpdateValue(value)}`;
+  if (currentIndex !== array.length - 1) {
+    result += ',';
+  }
+  return result;
+}, '')}
   WHERE
     id=${id}
 `);

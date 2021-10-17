@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StepsPage } from '@components/organisms/stepsPage';
 import { Card } from '@components/atoms/card';
 import Head from 'next/head';
-import { useGetAllControllersQuery, usePrefetch } from '@store/controller.service';
 import { Link } from '@components/atoms/link';
+import { useAppDispatch, useAppSelector } from '@hooks/redux';
+import { fetchAllControllers, fetchControllerById } from '@store/controllers/actions';
+import { getControllerById, getControllers, isControllersLoading } from '@store/controllers/selectors';
 
 const ControllerPage = () => {
-  const { data = [], isLoading } = useGetAllControllersQuery();
-  const prefetchController = usePrefetch('getControllerById');
+  const controllers = useAppSelector(getControllers);
+  const isLoading = useAppSelector(isControllersLoading);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAllControllers());
+  }, []);
 
   const prefetch = (id: number) => {
-    prefetchController(id);
-  };
+    dispatch(fetchControllerById(id))
+  }
 
   return (
     <StepsPage>
@@ -22,9 +29,10 @@ const ControllerPage = () => {
       <h2>Controller</h2>
       <p>Select your controller</p>
       <section className="card-container">
-        {isLoading && <div>Loading.......</div> }
-        {data.length > 0 && data.map((controller) => (
+        {isLoading && <div>Loading.......</div>}
+        {Object.keys(controllers).length > 0 && Object.values(controllers).map((controller) => (
           <Card
+            key={controller.id}
             title={controller.brand}
             subtitle={controller.model}
             image={{

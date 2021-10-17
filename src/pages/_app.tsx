@@ -1,20 +1,24 @@
 import React from 'react';
 import { UserProvider } from '@auth0/nextjs-auth0';
-import { Provider as ReduxProvider } from 'react-redux';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 import { AnimateSharedLayout } from 'framer-motion';
 import { AppProps } from 'next/app';
-import store from '@store/store';
+import store, { persistor } from '@store/store';
 import '../styles/globals.scss';
 
-const MyApp = ({ Component, pageProps }: AppProps) => (
-  <ReduxProvider store={store}>
-    <UserProvider>
-      <AnimateSharedLayout>
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        <Component {...pageProps} />
-      </AnimateSharedLayout>
-    </UserProvider>
-  </ReduxProvider>
+const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => (
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <UserProvider>
+        <AnimateSharedLayout>
+          {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+          <Component {...pageProps} />
+        </AnimateSharedLayout>
+      </UserProvider>
+    </PersistGate>
+  </Provider>
 );
 
 export default MyApp;
+ 

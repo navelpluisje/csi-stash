@@ -24,7 +24,7 @@ export interface File {
 export const adminConfigurationApi = createApi({
   reducerPath: 'adminConfigurationApi',
   tagTypes: ['Configuration'],
-  baseQuery: fetchBaseQuery({ baseUrl: '/api/admin/configuration/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: '/api/admin/configuration' }),
   endpoints: (builder) => ({
     getConfigurationById: builder.query<ControllerResponse, number>({
       query: (id) => `${id}`,
