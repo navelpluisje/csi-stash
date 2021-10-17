@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-export const getConfigurationsByControllerId = (id: string) => `
+export const getConfigurationsByControllerId = (id: string): string => `
   SELECT
     id,
     name,
@@ -12,7 +12,7 @@ export const getConfigurationsByControllerId = (id: string) => `
     controller_id = ${id}
 `;
 
-export const getConfigurationById = (id: string) => `
+export const getConfigurationById = (id: string): string => `
   SELECT
     id,
     name,
@@ -24,7 +24,7 @@ export const getConfigurationById = (id: string) => `
     id = ${id}
 `;
 
-export const getAdminConfigurationById = (id: string) => `
+export const getAdminConfigurationById = (id: string): string => `
   SELECT
     id,
     name,
@@ -36,7 +36,7 @@ export const getAdminConfigurationById = (id: string) => `
     id = ${id}
 `;
 
-export const getAdminConfigurationsByControllerId = (id: string) => `
+export const getAdminConfigurationsByControllerId = (id: string): string => `
   SELECT
     id,
     name,
@@ -48,7 +48,7 @@ export const getAdminConfigurationsByControllerId = (id: string) => `
     controller_id = ${id}
 `;
 
-export const getAdminConfigurations = () => `
+export const getAdminConfigurations = (): string => `
   SELECT
     id,
     brand,
@@ -70,7 +70,7 @@ interface insertConfigurationValues {
 
 export const insertConfiguration = ({
   name, description, controller_id, author_id,
-}: insertConfigurationValues) => `
+}: insertConfigurationValues): string => `
   INSERT INTO
     configuration (name, description, controller_id, author_id, file, filename)
   VALUES
@@ -90,17 +90,17 @@ const getUpdateValue = (value: string) => {
   return `'${value}'`;
 };
 
-export const updateConfiguration = (values: updateConfigurationValues, id: string) => (`
+export const updateConfiguration = (values: updateConfigurationValues, id: string): string => (`
   UPDATE
     configuration
   SET
     ${Object.entries(values).reduce((acc, [key, value], currentIndex, array) => {
-  let result = `${acc}${key}=${getUpdateValue(value)}`;
-  if (currentIndex !== array.length - 1) {
-    result += ',';
-  }
-  return result;
-}, '')}
+    let result = `${acc}${key}=${getUpdateValue(value)}`;
+    if (currentIndex !== array.length - 1) {
+      result += ',';
+    }
+    return result;
+  }, '')}
   WHERE
     id=${id}
 `);

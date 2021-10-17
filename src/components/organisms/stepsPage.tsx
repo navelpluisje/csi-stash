@@ -6,9 +6,7 @@ import { Step } from '@components/atoms/configStep';
 import { useRouter } from 'next/router';
 import { ConfigSteps } from '@constants';
 
-interface Props {}
-
-export const StepsPage: React.FC<Props> = ({ children }) => {
+export const StepsPage: React.FC = ({ children }) => {
   const { pathname } = useRouter();
 
   return (

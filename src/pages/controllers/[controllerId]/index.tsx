@@ -11,7 +11,7 @@ import { Configuration, ConfigurationList } from '@components/atoms/configuratio
 import { getConfigurationByController } from '@store/configuration/selectors';
 import { fetchControllerById } from '@store/controllers/actions';
 
-const ControllerPage = () => {
+const ControllerPage: React.FC = () => {
   const { query, push } = useRouter();
   const configurations = useAppSelector(
     getConfigurationByController(parseInt(query.controllerId as string, 10)),

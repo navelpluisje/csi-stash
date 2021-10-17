@@ -2,9 +2,7 @@ import React from 'react';
 import { Configuration as ConfigurationProps } from '@store/configuration/types';
 import { motion } from 'framer-motion';
 
-interface CLProps { }
-
-export const ConfigurationList: React.FC<CLProps> = ({ children }) => (
+export const ConfigurationList: React.FC = ({ children }) => (
   <ul className="configuration-list">
     {children}
   </ul>

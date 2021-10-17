@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { readFileContent } from '@utils/readFileContent';
 import { useForm } from 'react-hook-form';
 import { Modal } from '@components/atoms/modal';
 
-export const AddZoneForm = () => {
+export const AddZoneForm: React.FC = () => {
   const [showForm, setShowForm] = useState(false);
   const {
     register, handleSubmit, setValue, watch, reset,
@@ -22,7 +22,7 @@ export const AddZoneForm = () => {
     // addController({ body: values });
   };
 
-  const handleUpload = async (event: Event) => {
+  const handleUpload = async (event: ChangeEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
     const uploadFile = target.files ? target.files[0] : null;
     if (uploadFile) {
@@ -53,8 +53,7 @@ export const AddZoneForm = () => {
             <input type="hidden" {...register('author')} defaultValue="1" />
             <label htmlFor="file">Zon file</label>
             <label className="button button-outline upload-button">
-              {/* @ts-ignore */}
-              <input id="upload" type="file" onChange={handleUpload} />
+              <input id="upload" type="file" onChange={(event) => handleUpload(event)} />
               Select ZON-file
             </label>
             {filename}

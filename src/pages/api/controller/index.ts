@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { getControllers } from '@queries/controllers';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { PSDB } from 'planetscale-node';
 
 const conn = new PSDB('main');
 
-const Controllers = async (req: NextApiRequest, res: NextApiResponse) => {
+const Controllers = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   const {
     method,
   } = req;

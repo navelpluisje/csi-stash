@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from '@components/atoms/link';
 
-export const PageHeader = () => (
+export const PageHeader: React.FC = () => (
   <header className="page-header">
     <Link href="/">
       <img src="/images/logo.png" alt="" />

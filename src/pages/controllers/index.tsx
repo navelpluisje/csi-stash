@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '@hooks/redux';
 import { fetchAllControllers, fetchControllerById } from '@store/controllers/actions';
 import { getControllers, isAllControllersLoading } from '@store/controllers/selectors';
 
-const ControllerPage = () => {
+const ControllerPage: React.FC = () => {
   const controllers = useAppSelector(getControllers);
   const isLoading = useAppSelector(isAllControllersLoading);
   const dispatch = useAppDispatch();

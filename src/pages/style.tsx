@@ -3,7 +3,7 @@ import { Page } from '@components/organisms/adminPage';
 import Head from 'next/head';
 import { Link } from '@components/atoms/link';
 
-const StylePage = () => (
+const StylePage: React.FC = () => (
   <Page>
     <Head>
       <title>CSI-Stash :: Style</title>

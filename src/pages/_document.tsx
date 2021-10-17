@@ -4,6 +4,7 @@ import Document, {
 } from 'next/document';
 
 class MyDocument extends Document {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   render() {
     return (
       <Html>

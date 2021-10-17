@@ -1,7 +1,8 @@
-import { ThunkAppDispatch } from "@hooks/redux";
-import { AnyAction } from "@reduxjs/toolkit";
-import { RootState } from "@store/store";
-import { checkUpdate } from "@store/update/actions";
+import { ThunkAppDispatch } from '@hooks/redux';
+import { AnyAction } from '@reduxjs/toolkit';
+import type { RootState } from '@store/store';
+// eslint-disable-next-line import/no-cycle
+import { checkUpdate } from '@store/update/actions';
 
 export interface MiddlewareAPI<S> {
   dispatch: ThunkAppDispatch
@@ -18,4 +19,4 @@ export const updateMiddleware: Middleware<RootState> = (store) => (next) => (act
     store.dispatch(checkUpdate());
   }
   next(action);
-}
+};

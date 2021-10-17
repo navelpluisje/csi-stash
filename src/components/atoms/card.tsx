@@ -30,9 +30,8 @@ export const Card: React.FC<Props> = ({
         <img
           src={image.src}
           alt={image.alt}
-          // @ts-ignore
           // eslint-disable-next-line no-param-reassign
-          onError={(event) => { event.target.src = '/images/controller.png'; }}
+          onError={(event) => { (event.target as HTMLImageElement).src = '/images/controller.png'; }}
         />
       </picture>
     )}

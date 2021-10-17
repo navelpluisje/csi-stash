@@ -1,8 +1,6 @@
 import React from 'react';
 
-interface Props {}
-
-export const Steps: React.FC<Props> = ({ children }) => (
+export const Steps: React.FC = ({ children }) => (
   <aside className="steps-container">
     <ol className="steps-list">
       {children}

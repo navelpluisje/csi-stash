@@ -3,6 +3,7 @@ export interface Configuration {
   name: string;
   description: string;
   author: string;
+  // eslint-disable-next-line camelcase
   controller_id: number;
 }
 

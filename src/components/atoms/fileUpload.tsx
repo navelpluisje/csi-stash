@@ -1,5 +1,5 @@
 import { readFileContent } from '@utils/readFileContent';
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import {
   Control, FieldValues, RegisterOptions, useController, UseFormSetValue,
 } from 'react-hook-form';
@@ -30,7 +30,7 @@ export const FileUpload: React.FC<Props> = ({
     name: filenameName, control, rules, defaultValue: '',
   });
 
-  const handleUpload = async (event: Event) => {
+  const handleUpload = async (event: ChangeEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
     const uploadFile = target.files ? target.files[0] : null;
     if (uploadFile) {
@@ -44,13 +44,11 @@ export const FileUpload: React.FC<Props> = ({
     <div className="form-field-group">
       <label htmlFor="file">{label}</label>
       <label className="button button-outline upload-button" htmlFor="upload">
-        {/* @ts-ignore */}
         <input
           id="upload"
           type="file"
           name="upload"
-          // @ts-ignore
-          onChange={handleUpload}
+          onChange={(event) => handleUpload(event)}
           accept={accept}
         />
         Select MST-file

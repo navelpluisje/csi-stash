@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-export const getControllers = () => `
+export const getControllers = (): string => `
   SELECT
     id,
     brand,
@@ -10,7 +10,7 @@ export const getControllers = () => `
     controller
 `;
 
-export const getControllerById = (id: string) => `
+export const getControllerById = (id: string): string => `
   SELECT
     id,
     brand,
@@ -23,7 +23,7 @@ export const getControllerById = (id: string) => `
     id=${id}
 `;
 
-export const getAdminControllers = () => `
+export const getAdminControllers = (): string => `
   SELECT
     id,
     brand,
@@ -36,7 +36,7 @@ export const getAdminControllers = () => `
     controller
 `;
 
-export const getAdminControllerById = (id: number) => `
+export const getAdminControllerById = (id: number): string => `
   SELECT
     brand,
     model,
@@ -58,7 +58,7 @@ interface insertControllerValues {
   author_id: number;
 }
 
-export const insertController = ({ brand, model, author_id }: insertControllerValues) => `
+export const insertController = ({ brand, model, author_id }: insertControllerValues): string => `
   INSERT INTO
     controller (brand, model, author_id)
   VALUES
@@ -80,17 +80,17 @@ const getUpdateValue = (value: string) => {
   return `'${value}'`;
 };
 
-export const updateController = (values: updateControllerValues, id: number) => (`
+export const updateController = (values: updateControllerValues, id: number): string => (`
   UPDATE
     controller
   SET
     ${Object.entries(values).reduce((acc, [key, value], currentIndex, array) => {
-  let result = `${acc}${key}=${getUpdateValue(value)}`;
-  if (currentIndex !== array.length - 1) {
-    result += ',';
-  }
-  return result;
-}, '')}
+    let result = `${acc}${key}=${getUpdateValue(value)}`;
+    if (currentIndex !== array.length - 1) {
+      result += ',';
+    }
+    return result;
+  }, '')}
   WHERE
     id=${id}
 `);

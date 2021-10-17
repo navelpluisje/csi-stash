@@ -9,7 +9,7 @@ import { getControllerById } from '@store/controllers/selectors';
 import { getConfigurationById } from '@store/configuration/selectors';
 import { useAppSelector } from '@hooks/redux';
 
-const ControllerPage = () => {
+const ConfigurationPage: React.FC = () => {
   const { query } = useRouter();
   const controller = useAppSelector(
     getControllerById(parseInt(query.controllerId as string, 10)),
@@ -58,4 +58,4 @@ const ControllerPage = () => {
   );
 };
 
-export default ControllerPage;
+export default ConfigurationPage;

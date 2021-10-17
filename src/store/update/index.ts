@@ -14,7 +14,6 @@ export const updateReducer = createReducer(initialState, (builder) => {
       checkUpdate.fulfilled,
       (state, { payload }) => {
         state.lastUpdated = payload as number;
-      }
+      },
     );
 });
-

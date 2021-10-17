@@ -16,10 +16,6 @@ interface MutationConfiguration {
   body: Partial<Configuration>;
 }
 
-export interface File {
-
-}
-
 // Define a service using a base URL and expected endpoints
 export const adminConfigurationApi = createApi({
   reducerPath: 'adminConfigurationApi',

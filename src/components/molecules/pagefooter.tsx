@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const PageFooter = () => (
+export const PageFooter: React.FC = () => (
   <footer className="page-footer">
     Powered by
     <a
