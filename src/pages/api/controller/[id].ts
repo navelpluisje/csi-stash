@@ -18,9 +18,7 @@ const Controllers = async (req: NextApiRequest, res: NextApiResponse) => {
           res.json([]);
           return;
         }
-        console.time('get controller')
         const [result] = await conn.query(getControllerById(query.id as string), {});
-        console.timeEnd('get controller')
         res.statusCode = 200;
         res.json(result);
       } catch (e) {

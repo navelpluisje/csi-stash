@@ -13,7 +13,6 @@ const Controllers = async (req: NextApiRequest, res: NextApiResponse) => {
   switch (method) {
     case 'GET':
       try {
-        console.log({query})
         if (query.id === 'NaN') {
           res.statusCode = 200;
           res.json([]);

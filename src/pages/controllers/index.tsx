@@ -17,8 +17,8 @@ const ControllerPage = () => {
   }, []);
 
   const prefetch = (id: number) => {
-    dispatch(fetchControllerById(id))
-  }
+    dispatch(fetchControllerById(id));
+  };
 
   return (
     <StepsPage>

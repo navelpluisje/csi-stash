@@ -4,8 +4,8 @@ interface Props {
     columns: string;
 }
 
-export const Layout: React.FC<Props> = ({children, columns}) => (
-    <section className="layout" style={{gridTemplateColumns: columns}}>
-        {children}
-    </section>
-)
+export const Layout: React.FC<Props> = ({ children, columns }) => (
+  <section className="layout" style={{ gridTemplateColumns: columns }}>
+    {children}
+  </section>
+);

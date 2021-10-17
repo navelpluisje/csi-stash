@@ -1,8 +1,8 @@
 import React from 'react';
-import { Configuration as ConfigurationProps } from '@store/configuration.service';
+import { Configuration as ConfigurationProps } from '@store/configuration/types';
 import { motion } from 'framer-motion';
 
-interface CLProps {}
+interface CLProps { }
 
 export const ConfigurationList: React.FC<CLProps> = ({ children }) => (
   <ul className="configuration-list">
@@ -14,9 +14,11 @@ type Props = Partial<ConfigurationProps> & {
   onClick: () => void
 }
 
-export const Configuration: React.FC<Props> = ({ name, author, description, onClick }) => (
+export const Configuration: React.FC<Props> = ({
+  name, author, description, onClick,
+}) => (
   <motion.li
-    className="configuration-item" 
+    className="configuration-item"
     layoutId={`config-${name}-${author}`}
     onClick={onClick}
   >

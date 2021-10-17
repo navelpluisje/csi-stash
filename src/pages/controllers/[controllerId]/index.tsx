@@ -14,7 +14,7 @@ import { fetchControllerById } from '@store/controllers/actions';
 const ControllerPage = () => {
   const { query, push } = useRouter();
   const configurations = useAppSelector(
-    getConfigurationByController(parseInt(query.controllerId as string, 10))
+    getConfigurationByController(parseInt(query.controllerId as string, 10)),
   );
   const controller = useAppSelector(getControllerById(parseInt(query.controllerId as string, 10)));
   const isLoading = useAppSelector(isControllerByIdLoading);
@@ -25,11 +25,10 @@ const ControllerPage = () => {
       dispatch(fetchControllerById(parseInt(query.controllerId as string, 10)));
       dispatch(fetchConfigurationsByController(parseInt(query.controllerId as string, 10)));
     }
-  }, [query])
+  }, [query]);
 
   return (
     <StepsPage>
-      {console.log({ query })}
       <Head>
         <title>CSI-Stash :: Controllers</title>
       </Head>
@@ -44,7 +43,6 @@ const ControllerPage = () => {
             <div>No configurations yet</div>
           )}
           <ConfigurationList>
-            {console.log({ configurations })}
             {configurations?.map((config) => (
               <Configuration
                 key={config.id}

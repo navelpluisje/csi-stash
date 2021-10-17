@@ -10,7 +10,7 @@ export const getControllers = () => `
     controller
 `;
 
-export const getControllerById = (id: number) => `
+export const getControllerById = (id: string) => `
   SELECT
     id,
     brand,
