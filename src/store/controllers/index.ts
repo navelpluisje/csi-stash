@@ -36,8 +36,8 @@ export const controllerReducer = createReducer(initialState, (builder) => {
             controllers: {
               ...state.controllers,
               [payload.id]: payload,
-              loadingById: false,
             },
+            loadingById: false,
           };
         }
         return { ...state };

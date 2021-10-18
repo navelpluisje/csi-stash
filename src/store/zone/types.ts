@@ -3,6 +3,9 @@ export interface Zone {
   name: string;
   description: string;
   author: string;
+  type: string;
+  // eslint-disable-next-line camelcase
+  configuration_id: number;
 }
 
 export type ZoneResponse = Array<Zone>

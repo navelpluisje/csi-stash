@@ -5,7 +5,7 @@ import { ZoneCollection } from './types';
 type ZoneState = {
   zones: ZoneCollection,
   loading: {
-    [is: number]: boolean
+    [id: number]: boolean
   },
 }
 
@@ -19,8 +19,8 @@ export const zoneReducer = createReducer(initialState, (builder) => {
         ...state,
         zones: payload.zones.reduce<ZoneCollection>((acc, zone) => ({
           ...acc,
-          [payload.configuration]: {
-            ...acc[payload.configuration],
+          [zone.configuration_id]: {
+            ...(acc[zone.configuration_id] || {}),
             [zone.id]: zone,
           },
         }), {}),

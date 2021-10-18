@@ -5,10 +5,10 @@ import Head from 'next/head';
 import { Link } from '@components/atoms/link';
 import { useAppDispatch, useAppSelector } from '@hooks/redux';
 import { fetchAllControllers, fetchControllerById } from '@store/controllers/actions';
-import { getControllers, isAllControllersLoading } from '@store/controllers/selectors';
+import { getAllControllers, isAllControllersLoading } from '@store/controllers/selectors';
 
 const ControllerPage: React.FC = () => {
-  const controllers = useAppSelector(getControllers);
+  const controllers = useAppSelector(getAllControllers);
   const isLoading = useAppSelector(isAllControllersLoading);
   const dispatch = useAppDispatch();
 
@@ -30,7 +30,8 @@ const ControllerPage: React.FC = () => {
       <p>Select your controller</p>
       <section className="card-container">
         {isLoading && <div>Loading.......</div>}
-        {Object.keys(controllers).length > 0 && Object.values(controllers).map((controller) => (
+        {console.log(controllers)}
+        {controllers.length > 0 && controllers.map((controller) => (
           <Card
             key={controller.id}
             title={controller.brand}

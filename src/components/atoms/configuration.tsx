@@ -1,6 +1,7 @@
 import React from 'react';
 import { Configuration as ConfigurationProps } from '@store/configuration/types';
 import { motion } from 'framer-motion';
+import ConfigurationIcon from 'src/assets/configuration.svg';
 
 export const ConfigurationList: React.FC = ({ children }) => (
   <ul className="configuration-list">
@@ -20,14 +21,19 @@ export const Configuration: React.FC<Props> = ({
     layoutId={`config-${name}-${author}`}
     onClick={onClick}
   >
-    <h4>{name}</h4>
-    <div>
-      Created by:
-      {' '}
-      <span className="author">{author}</span>
-    </div>
-    {description && (
+    <aside>
+      <ConfigurationIcon />
+    </aside>
+    <section>
+      <h4>{name}</h4>
+      <div>
+        Created by:
+        {' '}
+        <span className="author">{author}</span>
+      </div>
+      {description && (
       <p>{description}</p>
-    )}
+      )}
+    </section>
   </motion.li>
 );
