@@ -3,8 +3,6 @@ import { getAdminConfigurationById } from '@queries/configurations';
 import { getAdminControllerById } from '@queries/controllers';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { PSDB } from 'planetscale-node';
-import fs from 'fs';
-import archiver from 'archiver';
 import { createDownload } from '@utils/createDownload';
 
 const conn = new PSDB('main');
@@ -24,7 +22,7 @@ const Controllers = async (req: NextApiRequest, res: NextApiResponse): Promise<v
 
         const download = createDownload(controller[0][0]);
 
-        console.log(download);
+        console.log(configuration);
 
         // const dir = './tmp/but/then/nested';
 
