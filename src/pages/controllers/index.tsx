@@ -6,6 +6,7 @@ import { Link } from '@components/atoms/link';
 import { useAppDispatch, useAppSelector } from '@hooks/redux';
 import { fetchAllControllers, fetchControllerById } from '@store/controllers/actions';
 import { getAllControllers, isAllControllersLoading } from '@store/controllers/selectors';
+import { addController } from '@store/download/actions';
 
 const ControllerPage: React.FC = () => {
   const controllers = useAppSelector(getAllControllers);
@@ -20,6 +21,10 @@ const ControllerPage: React.FC = () => {
     dispatch(fetchControllerById(id));
   };
 
+  const handleControllerClick = (controllerId: number) => {
+    dispatch(addController(controllerId));
+  };
+
   return (
     <StepsPage>
       <Head>
@@ -30,7 +35,6 @@ const ControllerPage: React.FC = () => {
       <p>Select your controller</p>
       <section className="card-container">
         {isLoading && <div>Loading.......</div>}
-        {console.log(controllers)}
         {controllers.length > 0 && controllers.map((controller) => (
           <Card
             key={controller.id}
@@ -46,6 +50,7 @@ const ControllerPage: React.FC = () => {
                 href={`/controllers/${controller.id}`}
                 onFocus={() => prefetch(controller.id)}
                 onMouseOver={() => prefetch(controller.id)}
+                onClick={() => handleControllerClick(controller.id)}
                 button
                 outline
                 wide

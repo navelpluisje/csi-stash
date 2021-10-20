@@ -5,31 +5,30 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Configuration } from '@components/atoms/configuration';
 import { Layout } from '@components/atoms/layout';
-import { getControllerById } from '@store/controllers/selectors';
-import { getConfigurationById } from '@store/configuration/selectors';
 import { useAppDispatch, useAppSelector } from '@hooks/redux';
 import { fetchZonesByConfiguration } from '@store/zone/actions';
-import { getZonesByConfiguration } from '@store/zone/selectors';
+import { getFilteredZonesByConfiguration } from '@store/zone/selectors';
 import { Zone, ZoneList } from '@components/atoms/zone';
+import { getDownloadConfiguration, getDownloadController, getDownloadZones } from '@store/download/selectors';
+import { addZone } from '@store/download/actions';
 
 const ConfigurationPage: React.FC = () => {
   const { query } = useRouter();
   const dispatch = useAppDispatch();
-  const controller = useAppSelector(
-    getControllerById(parseInt(query.controllerId as string, 10)),
-  );
-  const configuration = useAppSelector(
-    getConfigurationById(parseInt(query.configId as string, 10)),
-  );
-  const zones = useAppSelector(
-    getZonesByConfiguration(parseInt(query.configId as string, 10)),
-  );
+  const controller = useAppSelector(getDownloadController);
+  const configuration = useAppSelector(getDownloadConfiguration);
+  const selectedZones = useAppSelector(getDownloadZones);
+  const zones = useAppSelector(getFilteredZonesByConfiguration);
 
   useEffect(() => {
     if (query.configId) {
       dispatch(fetchZonesByConfiguration(query.configId as string));
     }
   }, [query]);
+
+  const handleZoneClick = (zoneId: number) => {
+    dispatch(addZone(zoneId));
+  };
 
   return (
     <StepsPage>
@@ -41,14 +40,13 @@ const ConfigurationPage: React.FC = () => {
       <Layout columns="2fr 1fr">
         <section>
           <ZoneList>
-            {console.log({ zones })}
-            {zones.length && zones.map((zone) => (
+            {!!zones.length && zones.map((zone) => (
               <Zone
                 name={zone.name}
                 description={zone.description}
                 author={zone.author}
                 type={zone.type}
-                onClick={() => console.log('test')}
+                onClick={() => handleZoneClick(zone.id)}
               />
             ))}
           </ZoneList>
@@ -74,6 +72,22 @@ const ConfigurationPage: React.FC = () => {
               description={configuration?.description}
               onClick={() => console.log('ggogogooooogogog')}
             />
+          )}
+          {!!selectedZones.length && (
+            <>
+              {selectedZones.map(({
+                id, name, author, description, type,
+              }) => (
+                <Zone
+                  key={id}
+                  name={name}
+                  author={author}
+                  description={description}
+                  type={type}
+                  onClick={() => console.log('ggogogooooogogog')}
+                />
+              ))}
+            </>
           )}
         </section>
       </Layout>

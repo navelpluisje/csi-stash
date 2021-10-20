@@ -5,18 +5,20 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Layout } from '@components/atoms/layout';
 import { useAppDispatch, useAppSelector } from '@hooks/redux';
-import { getControllerById, isControllerByIdLoading } from '@store/controllers/selectors';
+import { isControllerByIdLoading } from '@store/controllers/selectors';
 import { fetchConfigurationsByController } from '@store/configuration/actions';
 import { Configuration, ConfigurationList } from '@components/atoms/configuration';
 import { getConfigurationByController } from '@store/configuration/selectors';
 import { fetchControllerById } from '@store/controllers/actions';
+import { addConfiguration } from '@store/download/actions';
+import { getDownloadController } from '@store/download/selectors';
 
 const ControllerPage: React.FC = () => {
   const { query, push } = useRouter();
   const configurations = useAppSelector(
     getConfigurationByController(parseInt(query.controllerId as string, 10)),
   );
-  const controller = useAppSelector(getControllerById(parseInt(query.controllerId as string, 10)));
+  const controller = useAppSelector(getDownloadController);
   const isLoading = useAppSelector(isControllerByIdLoading);
   const dispatch = useAppDispatch();
 
@@ -26,6 +28,11 @@ const ControllerPage: React.FC = () => {
       dispatch(fetchConfigurationsByController(parseInt(query.controllerId as string, 10)));
     }
   }, [query]);
+
+  const handleConfigurationClick = (configId: number) => {
+    dispatch(addConfiguration(configId));
+    push(`/controllers/${query.controllerId}/${configId}`);
+  };
 
   return (
     <StepsPage>
@@ -49,7 +56,7 @@ const ControllerPage: React.FC = () => {
                 name={config.name}
                 author={config.author}
                 description={config.description}
-                onClick={() => push(`/controllers/${query.controllerId}/${config.id}`)}
+                onClick={() => handleConfigurationClick(config.id)}
               />
             ))}
           </ConfigurationList>

@@ -11,7 +11,7 @@ interface Props extends React.DetailedHTMLProps<
 }
 
 export const Link: React.FC<LinkProps & Props> = ({
-  children, button, outline, wide, onFocus, onMouseOver, ...rest
+  children, button, outline, wide, onFocus, onMouseOver, onClick, ...rest
 }) => {
   let className = button ? 'button ' : '';
   className += outline ? 'button-outline ' : '';
@@ -23,8 +23,11 @@ export const Link: React.FC<LinkProps & Props> = ({
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       <a
         className={className}
+        onMouseDown={onClick}
         onFocus={onFocus}
         onMouseOver={onMouseOver}
+        role="link"
+        tabIndex={0}
       >
         {children}
       </a>
