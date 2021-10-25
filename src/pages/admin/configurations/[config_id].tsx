@@ -9,9 +9,8 @@ import {
   useGetConfigurationByIdQuery, useUpdateConfigurationMutation,
 } from '@store/configuration.admin.service';
 import { useRouter } from 'next/router';
-import { AddZoneForm } from '@components/organisms/addZoneForm';
-import { ZoneList } from '@components/organisms/zoneList';
 import { FormInput } from '@components/atoms/formInput';
+import { ConfigurationZones } from '@components/organisms/configurations';
 
 const Admin = () => {
   const { query, push } = useRouter();
@@ -72,10 +71,7 @@ const Admin = () => {
             <button type="submit" disabled={isLoading}>Save</button>
           </form>
         </Card>
-        <Card title="Files">
-          <ZoneList zones={[{ name: 'fileName.zon' }]} />
-          <AddZoneForm />
-        </Card>
+        <ConfigurationZones configurationId={query.id as string} />
       </section>
       <section>
         <h4>A little help</h4>

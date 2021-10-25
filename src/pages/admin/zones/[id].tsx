@@ -10,7 +10,7 @@ import { useRouter } from 'next/router';
 import { FormInput } from '@components/atoms/formInput';
 import { FormSelect } from '@components/atoms/formSelect';
 import SaveIcon from '@assets/save.svg';
-import { ZoneFileForm } from '@components/organisms/zoneFileForm';
+import { ZoneFileForm } from '@components/organisms/zones';
 import { PluginTypes } from '@constants';
 
 const Admin = () => {

@@ -31,6 +31,9 @@ export const adminZoneApi = createApi({
     getZonesByControllerId: builder.query<ZoneResponse, string>({
       query: (id) => `controller/${id}`,
     }),
+    getZonesByConfigurationId: builder.query<ZoneResponse, string>({
+      query: (id) => `configuration/${id}`,
+    }),
     updateZone: builder.mutation<Zone, MutationZone>({
       query(data) {
         const { id, ...body } = data.body;
@@ -79,6 +82,7 @@ export const adminZoneApi = createApi({
 // auto-generated based on the defined endpoints
 export const {
   useGetZonesByControllerIdQuery,
+  useGetZonesByConfigurationIdQuery,
   useGetZoneByIdQuery,
   useLazyGetZoneByIdQuery,
   useUpdateZoneMutation,

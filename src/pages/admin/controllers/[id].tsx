@@ -11,8 +11,7 @@ import { useGetControllerByIdQuery, useUpdateControllerMutation } from '@store/c
 import { FormInput } from '@components/atoms/formInput';
 import { FileUpload } from '@components/atoms/fileUpload';
 import SaveIcon from '@assets/save.svg';
-import { ControllerZones } from '@components/organisms/controllerZones';
-import { ControllerConfigurations } from '@components/organisms/controllerConfigurations';
+import { ControllerZones, ControllerConfigurations } from '@components/organisms/controllers';
 
 const Admin = () => {
   const { query, push } = useRouter();
