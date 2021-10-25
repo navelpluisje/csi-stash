@@ -22,10 +22,10 @@ export const ControllerZones: React.FC<Props> = () => {
       <table>
         <thead>
           <tr>
-            <th>name</th>
-            <th>type</th>
-            <th>author</th>
-            <th>actions</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Plugin</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -33,7 +33,7 @@ export const ControllerZones: React.FC<Props> = () => {
             <tr key={zone.id}>
               <td>{zone.name}</td>
               <td>{zone.type}</td>
-              <td>{zone.author}</td>
+              <td>{zone.plugin_type}</td>
               <td>
                 <Link href={`/admin/zones/${zone.id}`}><EditIcon /></Link>
                 <Link href={`/admin/controllers/${query.id}/zoneurations/${zone.id}`}><DeleteIcon /></Link>

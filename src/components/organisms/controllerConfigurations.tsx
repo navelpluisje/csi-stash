@@ -22,9 +22,9 @@ export const ControllerConfigurations: React.FC<Props> = () => {
       <table>
         <thead>
           <tr>
-            <th>name</th>
-            <th>author</th>
-            <th>actions</th>
+            <th>Name</th>
+            <th>Author</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>

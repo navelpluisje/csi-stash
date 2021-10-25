@@ -13,7 +13,8 @@ const Controllers = async (req: NextApiRequest, res: NextApiResponse) => {
     method,
   } = req;
   const {
-    name, description, type,
+    // eslint-disable-next-line camelcase
+    name, description, plugin_type, type,
   } = body && JSON.parse(body);
 
   switch (method) {
@@ -23,6 +24,7 @@ const Controllers = async (req: NextApiRequest, res: NextApiResponse) => {
           name,
           description,
           type,
+          plugin_type,
           author_id: 1,
         }, parseInt(query.id as string, 10)),
         {},

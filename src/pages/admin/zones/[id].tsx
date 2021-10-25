@@ -11,6 +11,7 @@ import { FormInput } from '@components/atoms/formInput';
 import { FormSelect } from '@components/atoms/formSelect';
 import SaveIcon from '@assets/save.svg';
 import { ZoneFileForm } from '@components/organisms/zoneFileForm';
+import { PluginTypes } from '@constants';
 
 const Admin = () => {
   const { query } = useRouter();
@@ -70,6 +71,16 @@ const Admin = () => {
             <option value="base">Base</option>
             <option value="effects">Effect</option>
             <option value="instruments">Instrument</option>
+          </FormSelect>
+          <FormSelect
+            control={control}
+            name="plugin_type"
+            label="Plugin Type"
+          >
+            <option value="">Select a type</option>
+            {Object.values(PluginTypes).map((value) => (
+              <option value={value}>{value}</option>
+            ))}
           </FormSelect>
           <button type="submit" disabled={isLoading}>
             <SaveIcon />

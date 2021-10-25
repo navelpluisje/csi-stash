@@ -20,8 +20,8 @@ export const zoneReducer = createReducer(initialState, (builder) => {
         ...state,
         configuration: payload.zones.reduce<ZoneCollection>((acc, zone) => ({
           ...acc,
-          [zone.configuration_id]: {
-            ...(acc[zone.configuration_id] || {}),
+          [payload.configuration]: {
+            ...(acc[parseInt(payload.configuration, 10)] || {}),
             [zone.id]: zone,
           },
         }), {}),

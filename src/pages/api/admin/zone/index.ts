@@ -12,7 +12,10 @@ const Zones = async (req: NextApiRequest, res: NextApiResponse) => {
     method,
   } = req;
 
-  const { name, description, type } = !!body && JSON.parse(body);
+  const {
+    // eslint-disable-next-line camelcase
+    name, description, plugin_type, type,
+  } = !!body && JSON.parse(body);
 
   switch (method) {
     case 'POST': {
@@ -21,6 +24,7 @@ const Zones = async (req: NextApiRequest, res: NextApiResponse) => {
           name,
           description,
           type,
+          plugin_type,
           author_id: 1,
         }),
         {},

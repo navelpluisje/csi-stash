@@ -1,3 +1,6 @@
+/* eslint-disable camelcase */
+import { PluginTypes } from '@constants';
+
 export enum ZoneType {
   Base = 'base',
   Effect = 'effect',
@@ -9,9 +12,9 @@ export interface Zone {
   name: string;
   description: string;
   author: string;
+  pluginType: PluginTypes;
+  plugin_type: PluginTypes;
   type: ZoneType;
-  // eslint-disable-next-line camelcase
-  configuration_id: number;
 }
 
 export type ZoneResponse = Array<Zone>

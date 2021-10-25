@@ -28,7 +28,7 @@ type Props = Partial<ZoneProps> & {
 }
 
 export const Zone: React.FC<Props> = ({
-  name, author, description, onClick, type,
+  name, author, description, onClick, type, pluginType,
 }) => (
   <motion.li
     className="zone-item"
@@ -39,7 +39,11 @@ export const Zone: React.FC<Props> = ({
       {icons(type || '')}
     </aside>
     <section>
-      <h4>{name}</h4>
+      <h4>
+        {name}
+        {' '}
+        {!!pluginType && `(${pluginType})`}
+      </h4>
       <div>
         Created by:
         {' '}

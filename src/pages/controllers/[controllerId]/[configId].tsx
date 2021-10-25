@@ -45,6 +45,7 @@ const ConfigurationPage: React.FC = () => {
                 name={zone.name}
                 description={zone.description}
                 author={zone.author}
+                pluginType={zone.plugin_type}
                 type={zone.type}
                 onClick={() => handleZoneClick(zone.id)}
               />

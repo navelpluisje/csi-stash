@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+import { PluginTypes } from '@constants';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export interface Zone {
@@ -5,6 +7,7 @@ export interface Zone {
   name: string;
   description: string;
   author: string;
+  plugin_type: PluginTypes;
   type: 'base' | 'effects' | 'instrument';
   created: string;
   modified: string;

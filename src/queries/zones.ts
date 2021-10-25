@@ -6,6 +6,7 @@ export const getZonesByConfiguration = (id: string): string => `
     z.id,
     z.name,
     z.description,
+    z.plugin_type,
     z.type,
     (SELECT name FROM author WHERE id = author_id) as author,
     c.id as configuration_id
@@ -20,6 +21,7 @@ export const getZoneById = (id: string): string => `
     z.id,
     z.name,
     z.description,
+    z.plugin_type,
     z.type,
     (SELECT name FROM author WHERE id = author_id) as author
   FROM
@@ -33,6 +35,7 @@ export const getZonesByController = (id: string): string => `
     z.id,
     z.name,
     z.description,
+    z.plugin_type,
     z.type,
     (SELECT name FROM author WHERE id = author_id) as author,
     c.id as controller_id
@@ -47,6 +50,7 @@ export const getAdminZoneById = (id: string): string => `
     z.id,
     z.name,
     z.description,
+    z.plugin_type,
     z.type,
     z.created,
     z.modified,
@@ -60,17 +64,18 @@ export const getAdminZoneById = (id: string): string => `
 interface insertZoneValues {
   name: string;
   description: string;
+  plugin_type: string;
   author_id: number;
   type: ZoneType;
 }
 
 export const insertZone = ({
-  name, description, author_id, type,
+  name, description, author_id, type, plugin_type,
 }: insertZoneValues): string => `
   INSERT INTO
-    zone (name, description, author_id, type)
+    zone (name, description, plugin_type, author_id, type)
   VALUES
-    ('${name}', '${description}', ${author_id}, '${type}');
+    ('${name}', '${description}', '${plugin_type}', ${author_id}, '${type}');
 `;
 
 interface addZoneToParentArgs {
