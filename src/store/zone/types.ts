@@ -1,9 +1,15 @@
+export enum ZoneType {
+  Base = 'base',
+  Effect = 'effect',
+  Instrument = 'instrument',
+}
+
 export interface Zone {
   id: number;
   name: string;
   description: string;
   author: string;
-  type: string;
+  type: ZoneType;
   // eslint-disable-next-line camelcase
   configuration_id: number;
 }

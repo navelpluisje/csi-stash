@@ -1,17 +1,15 @@
-// require modules
 import fs from 'fs';
 import archiver from 'archiver';
 
 export const createDownload = (controller: any) => {
-  const output = fs.createWriteStream(`${__dirname}/example.zip`);
+  const filename = Date.now();
+  const output = fs.createWriteStream(`${__dirname}/${filename}.zip`);
   const archive = archiver('zip', {
     zlib: { level: 9 }, // Sets the compression level.
   });
 
   output.on('close', () => {
-    console.log(`${archive.pointer()} total bytes`);
-    console.log('archiver has been finalized and the output file descriptor has closed.');
-    fs.unlink(`${__dirname}/example.zip`, () => {});
+    fs.unlink(`${__dirname}/${filename}.zip`, () => {});
   });
 
   output.on('end', () => {
@@ -33,10 +31,11 @@ export const createDownload = (controller: any) => {
 
   archive.pipe(output);
 
-  archive.append(controller.file, { name: 'controller.mst' });
+  archive.append(controller.file, { name: 'Surfaces/Midi/controller.mst' });
+  archive.append('', { name: `Zones/${controller.brand}-${controller.model}/base.zon` });
+  archive.append('', { name: `Zones/${controller.brand}-${controller.model}/channel.zon` });
 
   archive.finalize();
-  // output.end(new Buffer(1048576));
 
   return archive;
 };

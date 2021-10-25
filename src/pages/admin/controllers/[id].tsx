@@ -8,22 +8,20 @@ import { useForm } from 'react-hook-form';
 import { Card } from '@components/atoms/card';
 import { Link } from '@components/atoms/link';
 import { useGetControllerByIdQuery, useUpdateControllerMutation } from '@store/controller.admin.service';
-import { useGetConfigurationsByControllerIdQuery } from '@store/configuration.admin.service';
 import { FormInput } from '@components/atoms/formInput';
 import { FileUpload } from '@components/atoms/fileUpload';
+import SaveIcon from '@assets/save.svg';
+import { ControllerZones } from '@components/organisms/controllerZones';
+import { ControllerConfigurations } from '@components/organisms/controllerConfigurations';
 
 const Admin = () => {
   const { query, push } = useRouter();
   const { data = [], isLoading } = useGetControllerByIdQuery(parseInt(query.id as string, 10));
-  const {
-    data: configurations = [],
-    // isLoading,
-  } = useGetConfigurationsByControllerIdQuery(query.id as string);
   const [updateController, {
     isLoading: isUpdating, isUninitialized, isSuccess,
   }] = useUpdateControllerMutation();
   const {
-    register, handleSubmit, setValue, control,
+    register, handleSubmit, setValue, control, watch,
   } = useForm();
 
   useEffect(() => {
@@ -62,6 +60,8 @@ const Admin = () => {
           {data.length > 0 && (
             <form onSubmit={handleSubmit(onSubmit)}>
               <input {...register('id')} type="hidden" />
+              <input {...register('file')} type="hidden" />
+              <input {...register('filename')} type="hidden" />
               <FormInput
                 control={control}
                 name="brand"
@@ -76,37 +76,21 @@ const Admin = () => {
               />
               <FileUpload
                 label="MST-file"
-                control={control}
+                watch={watch}
                 setValue={setValue}
                 accept=".mst, .txt"
               />
-              <button type="submit" disabled={isUpdating}>Save</button>
+              <button type="submit" disabled={isUpdating}>
+                <SaveIcon />
+                Save
+              </button>
             </form>
           )}
         </Card>
-        <Card title="Configurations">
-          <table>
-            <thead>
-              <tr>
-                <th>name</th>
-                <th>author</th>
-                <th>actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {configurations.map((config) => (
-                <tr>
-                  <td>{config.name}</td>
-                  <td>{config.author}</td>
-                  <td><Link href={`/admin/controllers/${query.id}/configurations/${config.id}`}>Edit</Link></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <Link href={`/admin/controllers/${query.id}/configurations`} button>Add Configuration</Link>
-        </Card>
+        <ControllerConfigurations controllerId={query.id as string} />
       </section>
       <section>
+        <ControllerZones controllerId={query.id as string} />
         <h4>A little Help</h4>
         <h5>Edit the controller</h5>
         <p>

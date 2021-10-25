@@ -1,34 +1,24 @@
 import { readFileContent } from '@utils/readFileContent';
 import React, { ChangeEvent } from 'react';
 import {
-  Control, FieldValues, RegisterOptions, useController, UseFormSetValue,
+  FieldValues, UseFormSetValue, UseFormWatch,
 } from 'react-hook-form';
+import AddFileIcon from '@assets/add-file.svg';
 
 interface Props {
   fileName?: string;
   filenameName?: string;
   label: string;
   setValue: UseFormSetValue<FieldValues>;
-  control: Control;
-  rules?: RegisterOptions;
+  watch: UseFormWatch<FieldValues>;
   accept?: string;
 }
 
 export const FileUpload: React.FC<Props> = ({
-  control, label, fileName = 'file', filenameName = 'filename', rules, setValue, accept = '',
+  watch, label, fileName = 'file', filenameName = 'filename', setValue, accept = '',
 }) => {
-  const {
-    field: file,
-    fieldState: { error: fileError },
-  } = useController({
-    name: fileName, control, rules, defaultValue: '',
-  });
-  const {
-    field: filename,
-    fieldState: { error: filenameError },
-  } = useController({
-    name: filenameName, control, rules, defaultValue: '',
-  });
+  const file = watch(fileName);
+  const filename = watch(filenameName);
 
   const handleUpload = async (event: ChangeEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
@@ -51,14 +41,15 @@ export const FileUpload: React.FC<Props> = ({
           onChange={(event) => handleUpload(event)}
           accept={accept}
         />
+        <AddFileIcon />
         Select MST-file
       </label>
-      {filename.value}
-      <pre><code>{file.value}</code></pre>
-      {
+      {filename}
+      <pre><code>{file}</code></pre>
+      {/* {
         (fileError || filenameError)
         && <div className="error-message">{fileError?.message || filenameError?.message}</div>
-      }
+      } */}
     </div>
   );
 };

@@ -7,13 +7,14 @@ button,
 input[type='button'],
 input[type='reset'],
 input[type='submit'] {
+  align-items: center;
   background-color: $color-primary;
   border: 1px solid $color-primary;
   border-radius: .25rem;
   box-sizing: border-box;
   color: $color-initial;
   cursor: pointer;
-  display: inline-block;
+  display: inline-flex;
   font-size: .8rem;
   font-weight: 500;
   line-height: 1;
@@ -87,5 +88,11 @@ input[type='submit'] {
         color: $color-primary;
       }
     }
+  }
+
+  > svg {
+    max-height: .75rem;
+    max-width: .75rem;
+    margin-right: .5rem;
   }
 }

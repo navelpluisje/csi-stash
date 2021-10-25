@@ -43,7 +43,7 @@ const Admin = () => {
               {...register('controller_id')}
               id="controller_id"
               type="hidden"
-              defaultValue={query.id}
+              defaultValue={query.controllerId}
             />
             <FormInput
               control={control}

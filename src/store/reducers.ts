@@ -7,6 +7,7 @@ import { zoneReducer } from '@store/zone';
 import { downloadReducer } from '@store/download';
 import { adminControllerApi } from '@store/controller.admin.service';
 import { adminConfigurationApi } from '@store/configuration.admin.service';
+import { adminZoneApi } from '@store/zone.admin.service';
 
 export const rootReducer = combineReducers({
   // CountReducer,
@@ -17,4 +18,5 @@ export const rootReducer = combineReducers({
   download: downloadReducer,
   [adminControllerApi.reducerPath]: adminControllerApi.reducer,
   [adminConfigurationApi.reducerPath]: adminConfigurationApi.reducer,
+  [adminZoneApi.reducerPath]: adminZoneApi.reducer,
 });

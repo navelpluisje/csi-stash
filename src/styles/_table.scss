@@ -5,6 +5,7 @@
 table {
   border-spacing: 0;
   display: block;
+  margin-bottom: 1rem;
   overflow-x: auto;
   text-align: left;
   width: 100%;
@@ -13,7 +14,7 @@ table {
 td,
 th {
   border-bottom: .1rem solid $color-quinary;
-  padding: 1.2rem 1.5rem;
+  padding: .75rem 1.5rem;
 
   &:first-child {
     padding-left: 0;

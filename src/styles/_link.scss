@@ -6,5 +6,18 @@ a {
   &:focus,
   &:hover {
     color: darken($color-primary, 15%);
+
+    > svg {
+      transform: scale(1.1);
+    }
+  }
+
+  > svg {
+    max-height: 1.2rem;
+    max-width: 1.2rem;
+  }
+
+  + a {
+    margin-left: .5rem;
   }
 }

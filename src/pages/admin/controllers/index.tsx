@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { Link } from '@components/atoms/link';
 import { useGetAllControllersQuery, usePrefetch } from '@store/controller.admin.service';
+import EditIcon from '@assets/edit.svg';
 
 const Admin = () => {
   const { data = [], isLoading } = useGetAllControllersQuery();
@@ -47,7 +48,7 @@ const Admin = () => {
                   onMouseOver={() => prefetch(controller.id)}
                   onFocus={() => prefetch(controller.id)}
                 >
-                  Edit
+                  <EditIcon />
                 </Link>
               </td>
             </tr>
