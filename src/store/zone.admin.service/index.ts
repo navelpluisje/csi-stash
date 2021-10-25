@@ -34,17 +34,6 @@ export const adminZoneApi = createApi({
     getZonesByConfigurationId: builder.query<ZoneResponse, string>({
       query: (id) => `configuration/${id}`,
     }),
-    updateZone: builder.mutation<Zone, MutationZone>({
-      query(data) {
-        const { id, ...body } = data.body;
-        return {
-          url: `${id}`,
-          method: 'PUT',
-          body: JSON.stringify(body),
-        };
-      },
-      invalidatesTags: ['Zone'],
-    }),
     addZone: builder.mutation<Zone, MutationZone>({
       query(data) {
         const { body } = data;
@@ -55,6 +44,17 @@ export const adminZoneApi = createApi({
         };
       },
       transformResponse: (response: Zone) => response,
+      invalidatesTags: ['Zone'],
+    }),
+    updateZone: builder.mutation<Zone, MutationZone>({
+      query(data) {
+        const { id, ...body } = data.body;
+        return {
+          url: `${id}`,
+          method: 'PUT',
+          body: JSON.stringify(body),
+        };
+      },
       invalidatesTags: ['Zone'],
     }),
     addZoneToParent: builder.mutation({

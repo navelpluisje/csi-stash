@@ -9,13 +9,14 @@ interface Props {
   fileName?: string;
   filenameName?: string;
   label: string;
+  buttonText: string;
   setValue: UseFormSetValue<FieldValues>;
   watch: UseFormWatch<FieldValues>;
   accept?: string;
 }
 
 export const FileUpload: React.FC<Props> = ({
-  watch, label, fileName = 'file', filenameName = 'filename', setValue, accept = '',
+  watch, label, buttonText, fileName = 'file', filenameName = 'filename', setValue, accept = '',
 }) => {
   const file = watch(fileName);
   const filename = watch(filenameName);
@@ -42,7 +43,7 @@ export const FileUpload: React.FC<Props> = ({
           accept={accept}
         />
         <AddFileIcon />
-        Select MST-file
+        {buttonText}
       </label>
       {filename}
       <pre><code>{file}</code></pre>
