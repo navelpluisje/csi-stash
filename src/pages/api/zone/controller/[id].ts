@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { getZonesByConfiguration } from '@queries/zones';
+import { getZonesByController } from '@queries/zones';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { PSDB } from 'planetscale-node';
 
 const conn = new PSDB('main');
 
-const ConfigurationZones = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
+const ControllerZones = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   const {
     query,
     method,
@@ -20,7 +20,7 @@ const ConfigurationZones = async (req: NextApiRequest, res: NextApiResponse): Pr
           return;
         }
         const [result] = await conn.query(
-          getZonesByConfiguration(query.id as string), {},
+          getZonesByController(query.id as string), {},
         );
         res.statusCode = 200;
         res.json(result);
@@ -40,4 +40,4 @@ const ConfigurationZones = async (req: NextApiRequest, res: NextApiResponse): Pr
   }
 };
 
-export default ConfigurationZones;
+export default ControllerZones;

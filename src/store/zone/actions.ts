@@ -1,13 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Zone } from './types';
 
-interface Payload {
+interface ConfigurationPayload {
   zones: Zone[];
   configuration: string;
 }
 
-export const fetchZonesByConfiguration = createAsyncThunk<Payload, string>(
-  '@zone/FETCH_ZONES_BY_CONTROLLER',
+export const fetchZonesByConfiguration = createAsyncThunk<ConfigurationPayload, string>(
+  '@zone/FETCH_ZONES_BY_CONFIGURATION',
   async (id) => {
     const result = await fetch(`/api/zone/configuration/${id}`);
     const response = await result.json();
@@ -15,6 +15,24 @@ export const fetchZonesByConfiguration = createAsyncThunk<Payload, string>(
     return {
       zones: response,
       configuration: id,
+    };
+  },
+);
+
+interface ControllerPayload {
+  zones: Zone[];
+  controller: string;
+}
+
+export const fetchZonesByController = createAsyncThunk<ControllerPayload, string>(
+  '@zone/FETCH_ZONES_BY_CONTROLLER',
+  async (id) => {
+    const result = await fetch(`/api/zone/controller/${id}`);
+    const response = await result.json();
+
+    return {
+      zones: response,
+      controller: id,
     };
   },
 );

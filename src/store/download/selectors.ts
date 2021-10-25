@@ -1,7 +1,6 @@
 import { getConfigurations } from '@store/configuration/selectors';
 import { getControllers } from '@store/controllers/selectors';
 import { RootState } from '@store/types';
-import { getZones } from '@store/zone/selectors';
 import { createSelector } from 'reselect';
 
 export const getDownloadControllerId = (state: RootState): number | null => (
@@ -30,7 +29,7 @@ export const getDownloadConfiguration = createSelector(
 
 export const getDownloadZones = createSelector(
   getDownloadZoneIds,
-  getDownloadConfigurationId,
-  getZones,
-  (ids, configId, zones) => (configId ? ids.map((id) => zones[configId][id]) : []),
+  getDownloadControllerId,
+  (state: RootState) => state.zones.controller,
+  (ids, controllerId, zones) => (controllerId ? ids.map((id) => zones[controllerId][id]) : []),
 );

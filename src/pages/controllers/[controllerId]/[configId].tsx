@@ -6,8 +6,8 @@ import { useRouter } from 'next/router';
 import { Configuration } from '@components/atoms/configuration';
 import { Layout } from '@components/atoms/layout';
 import { useAppDispatch, useAppSelector } from '@hooks/redux';
-import { fetchZonesByConfiguration } from '@store/zone/actions';
-import { getFilteredZonesByConfiguration } from '@store/zone/selectors';
+import { fetchZonesByController } from '@store/zone/actions';
+import { getFilteredZonesByController } from '@store/zone/selectors';
 import { Zone, ZoneList } from '@components/atoms/zone';
 import { getDownloadConfiguration, getDownloadController, getDownloadZones } from '@store/download/selectors';
 import { addZone } from '@store/download/actions';
@@ -18,11 +18,11 @@ const ConfigurationPage: React.FC = () => {
   const controller = useAppSelector(getDownloadController);
   const configuration = useAppSelector(getDownloadConfiguration);
   const selectedZones = useAppSelector(getDownloadZones);
-  const zones = useAppSelector(getFilteredZonesByConfiguration);
+  const zones = useAppSelector(getFilteredZonesByController);
 
   useEffect(() => {
-    if (query.configId) {
-      dispatch(fetchZonesByConfiguration(query.configId as string));
+    if (query.controllerId) {
+      dispatch(fetchZonesByController(query.controllerId as string));
     }
   }, [query]);
 
@@ -35,7 +35,7 @@ const ConfigurationPage: React.FC = () => {
       <Head>
         <title>CSI-Stash :: Controllers</title>
       </Head>
-
+      {console.log(zones)}
       <h2>Zones</h2>
       <Layout columns="2fr 1fr">
         <section>
