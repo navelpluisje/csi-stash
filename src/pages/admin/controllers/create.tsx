@@ -16,7 +16,7 @@ const Admin = () => {
     isLoading, isUninitialized, isSuccess,
   }] = useAddControllerMutation();
   const {
-    handleSubmit, setValue, control,
+    handleSubmit, setValue, control, register, watch,
   } = useForm();
 
   const onSubmit = async (values: Record<string, string>) => {
@@ -37,6 +37,8 @@ const Admin = () => {
 
       <Card title="Create new controller">
         <form onSubmit={handleSubmit(onSubmit)}>
+          <input {...register('file')} type="hidden" />
+          <input {...register('filename')} type="hidden" />
           <FormInput
             control={control}
             name="brand"
@@ -55,7 +57,7 @@ const Admin = () => {
           />
           <FileUpload
             label="MST-file"
-            control={control}
+            watch={watch}
             setValue={setValue}
             accept=".mst, .txt"
           />
