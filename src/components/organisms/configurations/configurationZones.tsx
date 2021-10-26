@@ -11,7 +11,7 @@ interface Props {
   configurationId: string;
 }
 
-export const ConfigurationZones: React.FC<Props> = () => {
+export const ConfigurationZones: React.FC<Props> = ({ configurationId }) => {
   const { query, asPath } = useRouter();
   const [getZones, { data: zones = [] }] = useLazyGetZonesByConfigurationIdQuery();
   const [deleteZone] = useDeleteZoneMutation();
@@ -50,7 +50,7 @@ export const ConfigurationZones: React.FC<Props> = () => {
           ))}
         </tbody>
       </table>
-      <Link href={`/admin/zones/create?type=configuration&id=${query.id}`} button>
+      <Link href={`/admin/zones/create?type=configuration&id=${configurationId}`} button>
         <AddIcon />
         Add Zone
       </Link>

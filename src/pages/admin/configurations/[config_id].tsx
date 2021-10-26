@@ -71,7 +71,7 @@ const Admin = () => {
             <button type="submit" disabled={isLoading}>Save</button>
           </form>
         </Card>
-        <ConfigurationZones configurationId={query.id as string} />
+        <ConfigurationZones configurationId={query.config_id as string} />
       </section>
       <section>
         <h4>A little help</h4>

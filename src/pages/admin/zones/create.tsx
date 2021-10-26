@@ -79,21 +79,23 @@ const Admin = () => {
               required: 'Type is required',
             }}
           >
-            <option value="">Select a type</option>
+            {type === 'controller' && <option value="">Select a type</option>}
             {type === 'configuration' && <option value="base">Base</option>}
             {type === 'controller' && <option value="effects">Effects</option>}
             {type === 'controller' && <option value="instruments">Instruments</option>}
           </FormSelect>
-          <FormSelect
-            control={control}
-            name="plugin_type"
-            label="Plugin Type"
-          >
-            <option value="">Select a type</option>
-            {Object.values(PluginTypes).map((value) => (
-              <option value={value}>{value}</option>
-            ))}
-          </FormSelect>
+          {type !== 'configuration' && (
+            <FormSelect
+              control={control}
+              name="plugin_type"
+              label="Plugin Type"
+            >
+              <option value="">Select a type</option>
+              {Object.values(PluginTypes).map((value) => (
+                <option value={value}>{value}</option>
+              ))}
+            </FormSelect>
+          )}
           <button type="submit" disabled={isLoading}>
             <SaveIcon />
             Save
