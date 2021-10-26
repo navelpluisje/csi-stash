@@ -10,6 +10,7 @@ export const getConfigurationsByControllerId = (id: string): string => `
     configuration
   WHERE
     controller_id = ${id}
+    AND deleted = 0
 `;
 
 export const getConfigurationById = (id: string): string => `
@@ -22,6 +23,7 @@ export const getConfigurationById = (id: string): string => `
     configuration
   WHERE
     id = ${id}
+    AND deleted = 0
 `;
 
 export const getAdminConfigurationById = (id: string): string => `
@@ -34,6 +36,7 @@ export const getAdminConfigurationById = (id: string): string => `
     configuration
   WHERE
     id = ${id}
+    AND deleted = 0
 `;
 
 export const getAdminConfigurationsByControllerId = (id: string): string => `
@@ -46,6 +49,7 @@ export const getAdminConfigurationsByControllerId = (id: string): string => `
     configuration
   WHERE
     controller_id = ${id}
+    AND deleted = 0
 `;
 
 export const getAdminConfigurations = (): string => `
@@ -59,6 +63,8 @@ export const getAdminConfigurations = (): string => `
     (SELECT count(id) FROM configuration WHERE controller_id = id) as configurations
   FROM
     controller
+  WHERE
+    deleted = 0
 `;
 
 interface insertConfigurationValues {

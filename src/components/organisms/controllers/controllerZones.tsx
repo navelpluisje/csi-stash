@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card } from '@components/atoms/card';
-import { useGetZonesByControllerIdQuery } from '@store/zone.admin.service';
+import { useDeleteZoneMutation, useLazyGetZonesByControllerIdQuery } from '@store/zone.admin.service';
 import { useRouter } from 'next/router';
 import EditIcon from '@assets/edit.svg';
 import DeleteIcon from '@assets/delete.svg';
@@ -12,10 +12,18 @@ interface Props {
 }
 
 export const ControllerZones: React.FC<Props> = () => {
-  const { query } = useRouter();
-  const {
-    data: zones = [],
-  } = useGetZonesByControllerIdQuery(query.id as string);
+  const { query, asPath } = useRouter();
+  const [getZones, { data: zones = [] }] = useLazyGetZonesByControllerIdQuery();
+  const [deleteZone] = useDeleteZoneMutation();
+
+  useEffect(() => {
+    getZones(query.id as string);
+  }, []);
+
+  const handleDeleteZoneClick = async (id: string) => {
+    await deleteZone(id);
+    getZones(query.id as string);
+  };
 
   return (
     <Card title="Zones">
@@ -36,7 +44,9 @@ export const ControllerZones: React.FC<Props> = () => {
               <td>{zone.plugin_type}</td>
               <td>
                 <Link href={`/admin/zones/${zone.id}`}><EditIcon /></Link>
-                <Link href={`/admin/controllers/${query.id}/zoneurations/${zone.id}`}><DeleteIcon /></Link>
+                <Link href={asPath} onClick={() => handleDeleteZoneClick(zone.id)}>
+                  <DeleteIcon />
+                </Link>
               </td>
             </tr>
           ))}

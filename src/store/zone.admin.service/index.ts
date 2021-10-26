@@ -67,13 +67,14 @@ export const adminZoneApi = createApi({
         };
       },
     }),
-    getLastAddedZoneId: builder.mutation<number, void>({
-      query() {
+    deleteZone: builder.mutation({
+      query(id) {
         return {
-          url: 'last',
-          method: 'GET',
+          url: `${id}`,
+          method: 'DELETE',
         };
       },
+      invalidatesTags: ['Zone'],
     }),
   }),
 });
@@ -81,13 +82,12 @@ export const adminZoneApi = createApi({
 // Export hooks for usage in function components, which are
 // auto-generated based on the defined endpoints
 export const {
-  useGetZonesByControllerIdQuery,
-  useGetZonesByConfigurationIdQuery,
+  useLazyGetZonesByControllerIdQuery,
+  useLazyGetZonesByConfigurationIdQuery,
   useGetZoneByIdQuery,
-  useLazyGetZoneByIdQuery,
   useUpdateZoneMutation,
   useAddZoneMutation,
-  useGetLastAddedZoneIdMutation,
+  useDeleteZoneMutation,
   useAddZoneToParentMutation,
   usePrefetch,
 } = adminZoneApi;

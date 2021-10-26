@@ -3,7 +3,7 @@ import { Card } from '@components/atoms/card';
 import { useGetConfigurationsByControllerIdQuery } from '@store/configuration.admin.service';
 import { useRouter } from 'next/router';
 import EditIcon from '@assets/edit.svg';
-import DeleteIcon from '@assets/delete.svg';
+// import DeleteIcon from '@assets/delete.svg';
 import AddIcon from '@assets/add.svg';
 import { Link } from '@components/atoms/link';
 
@@ -34,7 +34,7 @@ export const ControllerConfigurations: React.FC<Props> = () => {
               <td>{config.author}</td>
               <td>
                 <Link href={`/admin/configurations/${config.id}`}><EditIcon /></Link>
-                <Link href={`/admin/configurations/${config.id}`}><DeleteIcon /></Link>
+                {/* <Link href={`/admin/configurations/${config.id}`}><DeleteIcon /></Link> */}
               </td>
             </tr>
           ))}

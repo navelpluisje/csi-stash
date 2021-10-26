@@ -14,6 +14,7 @@ export const getZonesByConfiguration = (id: string): string => `
     zone z JOIN configuration_has_zones c ON z.id = c.zone_id
   WHERE
     c.configuration_id = ${id}
+    AND z.deleted = 0
 `;
 
 export const getZoneById = (id: string): string => `
@@ -28,6 +29,7 @@ export const getZoneById = (id: string): string => `
     zone
   WHERE
     id=${id}
+    AND z.deleted = 0
 `;
 
 export const getZonesByController = (id: string): string => `
@@ -43,6 +45,7 @@ export const getZonesByController = (id: string): string => `
     zone z JOIN controller_has_zones c ON z.id = c.zone_id
   WHERE
     c.controller_id = ${id}
+    AND z.deleted = 0
 `;
 
 export const getAdminZoneById = (id: string): string => `
@@ -59,6 +62,17 @@ export const getAdminZoneById = (id: string): string => `
     zone z
   WHERE
     id=${id}
+    AND z.deleted = 0
+`;
+
+export const deleteZoneById = (id: string): string => `
+  UPDATE
+    zone
+  SET
+    deleted = 1,
+    deleted_at = CURRENT_TIMESTAMP
+  WHERE
+    id = ${id}
 `;
 
 interface insertZoneValues {
@@ -114,5 +128,3 @@ export const updateZone = (values: insertZoneValues, id: number): string => `
   WHERE
   id=${id}
 `;
-
-export const getLastZoneId = 'SELECT MAX(id) as id FROM zone';

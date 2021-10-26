@@ -43,7 +43,5 @@ export const updateZone = (values: insertZoneFileValues, id: number): string => 
     return result;
   }, '')}
   WHERE
-  id=${id}
+    id=${id}
 `;
-
-export const getLastZoneId = 'SELECT MAX(id) as id FROM zone';

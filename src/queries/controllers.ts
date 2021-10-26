@@ -8,6 +8,8 @@ export const getControllers = (): string => `
     (SELECT count(id) FROM configuration WHERE controller_id = id) as configurations
   FROM
     controller
+  WHERE
+    deleted = 0
 `;
 
 export const getControllerById = (id: string): string => `
@@ -21,6 +23,7 @@ export const getControllerById = (id: string): string => `
     controller
   WHERE
     id=${id}
+    AND deleted = 0
 `;
 
 export const getAdminControllers = (): string => `
@@ -34,6 +37,8 @@ export const getAdminControllers = (): string => `
     (SELECT count(id) FROM configuration WHERE controller_id = id) as configurations
   FROM
     controller
+  WHERE
+    deleted = 0
 `;
 
 export const getAdminControllerById = (id: number): string => `
@@ -50,6 +55,7 @@ export const getAdminControllerById = (id: number): string => `
     controller
   WHERE
     id=${id}
+    AND deleted = 0
 `;
 
 interface insertControllerValues {
