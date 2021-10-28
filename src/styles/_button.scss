@@ -26,6 +26,7 @@ input[type='submit'] {
   white-space: nowrap;
 
   &.button-wide {
+    display: inline-block;
     width: 100%;
   }
 
