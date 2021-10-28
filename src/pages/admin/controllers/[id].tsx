@@ -75,7 +75,7 @@ const Admin = () => {
               />
               <FileUpload
                 label="MST-file"
-                buttonText="Select Sruface file"
+                buttonText="Select Surface file"
                 watch={watch}
                 setValue={setValue}
                 accept=".mst, .txt"

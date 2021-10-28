@@ -18,8 +18,10 @@ const Admin = () => {
   const { data = [], isLoading } = useGetZoneByIdQuery(parseInt(query.id as string, 10));
   const [updateZone] = useUpdateZoneMutation();
   const {
-    handleSubmit, control, register, setValue,
+    handleSubmit, control, register, setValue, watch,
   } = useForm();
+
+  const type = watch('type');
 
   useEffect(() => {
     if (setValue && data.length > 0) {
@@ -27,6 +29,7 @@ const Admin = () => {
       setValue('name', data[0].name);
       setValue('description', data[0].description);
       setValue('type', data[0].type);
+      setValue('plugin_type', data[0].plugin_type || '');
     }
   }, [data, setValue]);
 
@@ -72,6 +75,7 @@ const Admin = () => {
             <option value="effects">Effect</option>
             <option value="instruments">Instrument</option>
           </FormSelect>
+          {['effects', 'instruments'].includes(type) && (
           <FormSelect
             control={control}
             name="plugin_type"
@@ -82,6 +86,7 @@ const Admin = () => {
               <option value={value}>{value}</option>
             ))}
           </FormSelect>
+          )}
           <button type="submit" disabled={isLoading}>
             <SaveIcon />
             Save

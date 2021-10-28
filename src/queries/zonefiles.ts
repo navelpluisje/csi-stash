@@ -24,24 +24,9 @@ export const insertZoneFile = ({
     ('${filename}', '${file}', ${zoneId});
 `;
 
-const getUpdateValue = (value: string) => {
-  if (!Number.isNaN(parseFloat(value)) && Number.isFinite(parseFloat(value))) {
-    return value;
-  }
-  return `'${value}'`;
-};
-
-export const updateZone = (values: insertZoneFileValues, id: number): string => `
-  UPDATE
-    zone
-  SET
-    ${Object.entries(values).reduce((acc, [key, value], currentIndex, array) => {
-    let result = `${acc}${key}=${getUpdateValue(value)}`;
-    if (currentIndex !== array.length - 1) {
-      result += ',';
-    }
-    return result;
-  }, '')}
+export const deleteZoneFileById = (id: string): string => `
+  DELETE FROM
+    zone_file
   WHERE
-    id=${id}
+    id = ${id}
 `;

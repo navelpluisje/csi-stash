@@ -1,5 +1,12 @@
 import { ZoneType } from '@store/zone/types';
 
+const getUpdateValue = (value: string) => {
+  if (!Number.isNaN(parseFloat(value)) && Number.isFinite(parseFloat(value))) {
+    return value;
+  }
+  return `'${value}'`;
+};
+
 /* eslint-disable camelcase */
 export const getZonesByConfiguration = (id: string): string => `
   SELECT
@@ -89,7 +96,7 @@ export const insertZone = ({
   INSERT INTO
     zone (name, description, plugin_type, author_id, type)
   VALUES
-    ('${name}', '${description}', '${plugin_type}', ${author_id}, '${type}');
+    ('${name}', '${description}', '${plugin_type || ''}', ${author_id}, '${type}');
 `;
 
 interface addZoneToParentArgs {
@@ -106,13 +113,6 @@ export const addZoneToParent = ({
   VALUES
     (${parentId}, ${zoneId})
 `;
-
-const getUpdateValue = (value: string) => {
-  if (!Number.isNaN(parseFloat(value)) && Number.isFinite(parseFloat(value))) {
-    return value;
-  }
-  return `'${value}'`;
-};
 
 export const updateZone = (values: insertZoneValues, id: number): string => `
   UPDATE

@@ -14,7 +14,7 @@ const Zones = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const {
     // eslint-disable-next-line camelcase
-    name, description, plugin_type, type,
+    name, description, plugin_type = null, type,
   } = !!body && JSON.parse(body);
 
   switch (method) {

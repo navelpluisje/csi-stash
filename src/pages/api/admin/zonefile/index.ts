@@ -29,7 +29,7 @@ const ZoneFiles = async (req: NextApiRequest, res: NextApiResponse) => {
 
       res.statusCode = 200;
       res.json({
-        id: result[0].insertId, filename, file, zone_id: zoneId,
+        id: result[0].insertId, filename, file, zoneId,
       });
       break;
     }

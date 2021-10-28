@@ -1,7 +1,6 @@
-import React from 'react';
-import { useGetFilesByZoneIdQuery } from '@store/zoneFile.admin.service';
+import React, { useEffect } from 'react';
+import { useLazyGetFilesByZoneIdQuery, useDeleteZoneFileMutation } from '@store/zoneFile.admin.service';
 import { useRouter } from 'next/router';
-import EditIcon from '@assets/edit.svg';
 import DeleteIcon from '@assets/delete.svg';
 import { Link } from '@components/atoms/link';
 
@@ -10,10 +9,18 @@ interface Props {
 }
 
 export const ZoneFileList: React.FC<Props> = ({ zoneId }) => {
-  const { query } = useRouter();
-  const {
-    data: zonefiles = [],
-  } = useGetFilesByZoneIdQuery(zoneId);
+  const { asPath } = useRouter();
+  const [getZoneFiles, { data: zonefiles = [] }] = useLazyGetFilesByZoneIdQuery();
+  const [deleteFile] = useDeleteZoneFileMutation();
+
+  const handleDeleteIconClick = async (id: number) => {
+    await deleteFile(id);
+    getZoneFiles(zoneId);
+  };
+
+  useEffect(() => {
+    getZoneFiles(zoneId);
+  }, []);
 
   return (
     <table>
@@ -28,8 +35,9 @@ export const ZoneFileList: React.FC<Props> = ({ zoneId }) => {
           <tr key={zonefile.id}>
             <td>{zonefile.filename}</td>
             <td>
-              <Link href={`/admin/zonefiles/${zonefile.id}`}><EditIcon /></Link>
-              <Link href={`/admin/controllers/${query.id}/zoneurations/${zonefile.id}`}><DeleteIcon /></Link>
+              <Link href={asPath} onClick={() => handleDeleteIconClick(zonefile.id)}>
+                <DeleteIcon />
+              </Link>
             </td>
           </tr>
         ))}

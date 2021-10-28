@@ -79,7 +79,7 @@ const Admin = () => {
               required: 'Type is required',
             }}
           >
-            {type === 'controller' && <option value="">Select a type</option>}
+            <option value="">Select a type</option>
             {type === 'configuration' && <option value="base">Base</option>}
             {type === 'controller' && <option value="effects">Effects</option>}
             {type === 'controller' && <option value="instruments">Instruments</option>}

@@ -26,7 +26,7 @@ export const adminConfigurationApi = createApi({
       query: (id) => `${id}`,
     }),
     getConfigurationsByControllerId: builder.query<ControllerResponse, string>({
-      query: (id) => `_/${id}`,
+      query: (id) => `controller/${id}`,
     }),
     updateConfiguration: builder.mutation<Configuration, MutationConfiguration>({
       query(data) {

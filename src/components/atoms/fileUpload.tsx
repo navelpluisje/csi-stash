@@ -1,9 +1,11 @@
 import { readFileContent } from '@utils/readFileContent';
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import {
   FieldValues, UseFormSetValue, UseFormWatch,
 } from 'react-hook-form';
 import AddFileIcon from '@assets/add-file.svg';
+import { AnimatePresence, motion } from 'framer-motion';
+import CodeIcon from '@assets/code.svg';
 
 interface Props {
   fileName?: string;
@@ -20,6 +22,7 @@ export const FileUpload: React.FC<Props> = ({
 }) => {
   const file = watch(fileName);
   const filename = watch(filenameName);
+  const [showCode, setShowCode] = useState(true);
 
   const handleUpload = async (event: ChangeEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
@@ -31,8 +34,12 @@ export const FileUpload: React.FC<Props> = ({
     }
   };
 
+  const handleToggleCode = () => {
+    setShowCode(!showCode);
+  };
+
   return (
-    <div className="form-field-group">
+    <div className="form-field-group file-upload">
       <label htmlFor="file">{label}</label>
       <label className="button button-outline upload-button" htmlFor="upload">
         <input
@@ -45,8 +52,20 @@ export const FileUpload: React.FC<Props> = ({
         <AddFileIcon />
         {buttonText}
       </label>
-      {filename}
-      <pre><code>{file}</code></pre>
+      {file && (
+      <button onClick={handleToggleCode} type="button" className="button-outline">
+        <CodeIcon />
+        {showCode ? 'Hide Code' : 'Show Code'}
+      </button>
+      )}
+      {file && (
+      <section className="code-block">
+        <div>{filename}</div>
+        <AnimatePresence>
+          {showCode && <motion.pre exit={{ height: 0 }} animate={{ height: 'auto' }} initial={{ height: 0 }}><code>{file}</code></motion.pre>}
+        </AnimatePresence>
+      </section>
+      )}
       {/* {
         (fileError || filenameError)
         && <div className="error-message">{fileError?.message || filenameError?.message}</div>

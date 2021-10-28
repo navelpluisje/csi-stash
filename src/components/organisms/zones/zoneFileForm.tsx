@@ -2,7 +2,7 @@ import { FileUpload } from '@components/atoms/fileUpload';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import SaveIcon from '@assets/save.svg';
-import { useAddZoneFileMutation } from '@store/zoneFile.admin.service';
+import { useAddZoneFileMutation, useLazyGetFilesByZoneIdQuery, ZoneFile } from '@store/zoneFile.admin.service';
 
 interface Props {
   zoneId: string;
@@ -13,19 +13,22 @@ export const ZoneFileForm:React.FC<Props> = ({ zoneId }) => {
     handleSubmit, setValue, watch, register, reset,
   } = useForm();
   const [addZoneFile] = useAddZoneFileMutation();
+  const [getZoneFiles] = useLazyGetFilesByZoneIdQuery();
 
-  const onFileSubmit = (values: Record<string, string>) => {
-    addZoneFile({
+  const onFileSubmit = async (values: Record<string, string>) => {
+    const result = await addZoneFile({
       body: {
         ...values,
         zoneId: parseInt(zoneId, 10),
       },
     });
+    if ((result as { data: ZoneFile; }).data) {
+      await getZoneFiles((result as { data: ZoneFile; }).data.zoneId.toString());
+    }
     reset();
   };
 
   return (
-
     <form onSubmit={handleSubmit(onFileSubmit)}>
       <input type="hidden" {...register('file')} />
       <input type="hidden" {...register('filename')} />

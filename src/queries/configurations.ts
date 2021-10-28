@@ -78,9 +78,9 @@ export const insertConfiguration = ({
   name, description, controller_id, author_id,
 }: insertConfigurationValues): string => `
   INSERT INTO
-    configuration (name, description, controller_id, author_id, file, filename)
+    configuration (name, description, controller_id, author_id)
   VALUES
-    ('${name}', '${description}', ${controller_id}, ${author_id}, '', '')
+    ('${name}', '${description}', ${controller_id}, ${author_id})
 `;
 
 interface updateConfigurationValues {

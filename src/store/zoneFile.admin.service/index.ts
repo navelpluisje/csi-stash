@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export interface ZoneFile {
-  id: string;
+  id: number;
   filename: string;
   file: string;
   zoneId: number;
@@ -47,6 +47,15 @@ export const adminZoneFileApi = createApi({
       },
       invalidatesTags: ['ZoneFile'],
     }),
+    deleteZoneFile: builder.mutation<ZoneFile, number>({
+      query(id) {
+        return {
+          url: `${id}`,
+          method: 'DELETE',
+        };
+      },
+      invalidatesTags: ['ZoneFile'],
+    }),
   }),
 });
 
@@ -55,7 +64,8 @@ export const adminZoneFileApi = createApi({
 export const {
   useGetFilesByZoneIdQuery,
   useAddZoneFileMutation,
-  useLazyGetFilesByZoneIdQuery,
   useUpdateZoneFileMutation,
+  useDeleteZoneFileMutation,
+  useLazyGetFilesByZoneIdQuery,
   usePrefetch,
 } = adminZoneFileApi;
