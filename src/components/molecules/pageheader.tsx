@@ -11,7 +11,7 @@ export const PageHeader: React.FC = () => {
         <img src="/images/logo.png" alt="" />
         <h4>-stash</h4>
       </Link>
-      {!user && <Link href="/controller" button>Start configuring</Link>}
+      {!user && <Link href="/controllers" button>Start configuring</Link>}
       {!!user && <Link href="/api/auth/logout">Log out</Link>}
     </header>
   );
